@@ -42,25 +42,24 @@ function TourCard({ step, setStep, close }: { step: number; setStep: (n: number)
   const s = STEPS[step];
 
   useLayoutEffect(() => {
-    // Skip steps whose target is not on this page.
     const el = document.querySelector<HTMLElement>(`[data-tour='${s.target}']`);
+    const w = card.current?.offsetWidth ?? 340, h = card.current?.offsetHeight ?? 180;
+    card.current?.focus();
     if (!el) {
-      if (step < STEPS.length - 1) setStep(step + 1);
-      else close();
+      // The step's part of the page is not shown here: explain it in a card near the top.
+      setPos({ left: Math.max(16, (window.innerWidth - w) / 2), top: 88 });
       return;
     }
     el.classList.add("tour-target");
     el.scrollIntoView({ block: "nearest" });
     const r = el.getBoundingClientRect();
-    const w = card.current?.offsetWidth ?? 340, h = card.current?.offsetHeight ?? 180;
     const below = r.bottom + 12 + h < window.innerHeight;
     setPos({
       left: Math.min(Math.max(16, r.left), window.innerWidth - w - 16),
       top: below ? r.bottom + 12 : Math.max(16, r.top - h - 12),
     });
-    card.current?.focus();
     return () => el.classList.remove("tour-target");
-  }, [step, s.target, setStep, close]);
+  }, [step, s.target]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();

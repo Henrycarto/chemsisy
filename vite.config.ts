@@ -32,6 +32,9 @@ export default defineConfig({
         navigateFallback: "/index.html",
         maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
         cleanupOutdatedCaches: true,
+        // Take control of the open page on first install, so offline works right after one visit.
+        clientsClaim: true,
+        skipWaiting: true,
       },
     }),
   ],

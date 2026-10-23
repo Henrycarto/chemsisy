@@ -107,6 +107,13 @@ export function MoleculeView(p: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [labelKey, status]);
 
+  // The "Reset view" tool lives outside the figure object; it asks through an event.
+  useEffect(() => {
+    const reset = () => fig.current?.resetView();
+    document.addEventListener("chemsisy:reset", reset);
+    return () => document.removeEventListener("chemsisy:reset", reset);
+  }, []);
+
   // Keep the drawing sharp and fitted when the figure changes size.
   useEffect(() => {
     if (!host.current) return;

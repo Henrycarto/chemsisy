@@ -16,7 +16,9 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "data": "node --experimental-strip-types scripts/build-data.ts"
+    "data": "node --experimental-strip-types scripts/build-data.ts",
+    "check": "node scripts/check-privacy.mjs && node scripts/check-house-rules.mjs",
+    "size": "node scripts/check-size.mjs"
   },
   "dependencies": {
     "@floating-ui/react": "0.27.20",

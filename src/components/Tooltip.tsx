@@ -9,11 +9,23 @@ import {
   FloatingPortal, autoUpdate, flip, offset, shift, useClick, useDismiss, useFocus, useFloating, useHover,
   useInteractions, useMergeRefs, useRole, safePolygon,
 } from "@floating-ui/react";
-import { cloneElement, isValidElement, useState, type ReactElement, type ReactNode, type Ref } from "react";
+import { cloneElement, isValidElement, useEffect, useState, type ReactElement, type ReactNode, type Ref } from "react";
+
+// Only one tooltip is open at a time: opening one closes the last.
+let closeCurrent: (() => void) | null = null;
 
 export function Tooltip({ content, children, placement = "top", disabled = false }: { content: ReactNode; children: ReactElement; placement?: "top" | "bottom" | "right" | "left"; disabled?: boolean }) {
   const [state, setOpen] = useState(false);
   const open = state && !disabled;
+  useEffect(() => {
+    if (!open) return;
+    const close = () => setOpen(false);
+    if (closeCurrent && closeCurrent !== close) closeCurrent();
+    closeCurrent = close;
+    return () => {
+      if (closeCurrent === close) closeCurrent = null;
+    };
+  }, [open]);
   const { refs, floatingStyles, context } = useFloating({
     open,
     onOpenChange: setOpen,

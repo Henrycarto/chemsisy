@@ -49,7 +49,7 @@ export function Home() {
         </div>
         <div className="home-figure">
           {featured && (
-            <figure style={{ margin: 0 }}>
+            <figure style={{ margin: 0 }} data-tour="figure">
               <MoleculeView
                 sdf={featured.sdf}
                 label={`3D model of ${featured.name}`}
