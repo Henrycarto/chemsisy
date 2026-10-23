@@ -1,0 +1,187 @@
+{
+ "6869": {
+  "heavyFirst": true,
+  "nHeavy": 24,
+  "groups": [
+   {
+    "id": "beta_lactam",
+    "name": "β-lactam ring",
+    "atoms": [
+     12,
+     1,
+     11,
+     8,
+     6
+    ]
+   },
+   {
+    "id": "thiazolidine",
+    "name": "Thiazolidine ring",
+    "atoms": [
+     0,
+     9,
+     10,
+     6,
+     8
+    ]
+   },
+   {
+    "id": "carboxylic_acid",
+    "name": "Carboxylic acid",
+    "atoms": [
+     15,
+     3,
+     2
+    ]
+   },
+   {
+    "id": "sec_amide",
+    "name": "Amide side-chain link",
+    "atoms": [
+     17,
+     16,
+     4,
+     7,
+     11
+    ]
+   },
+   {
+    "id": "aryl_ether",
+    "name": "Aryl ether",
+    "atoms": [
+     18,
+     5,
+     17
+    ]
+   },
+   {
+    "id": "gem_dimethyl",
+    "name": "Gem-dimethyl",
+    "atoms": [
+     13,
+     9,
+     14
+    ]
+   }
+  ],
+  "formula": 24,
+  "mcs": [
+   0,
+   8,
+   6,
+   10,
+   9,
+   13,
+   14,
+   15,
+   2,
+   3,
+   12,
+   11,
+   7,
+   16,
+   4,
+   17,
+   1
+  ],
+  "smiles": "[H]OC(=O)[C@]1([H])N2C(=O)[C@@]([H])(N([H])C(=O)C([H])([H])Oc3c([H])c([H])c([H])c([H])c3[H])[C@@]2([H])SC1(C([H])([H])[H])C([H])([H])[H]"
+ },
+ "33613": {
+  "heavyFirst": true,
+  "nHeavy": 25,
+  "groups": [
+   {
+    "id": "beta_lactam",
+    "name": "β-lactam ring",
+    "atoms": [
+     13,
+     1,
+     12,
+     9,
+     6
+    ]
+   },
+   {
+    "id": "thiazolidine",
+    "name": "Thiazolidine ring",
+    "atoms": [
+     0,
+     10,
+     11,
+     6,
+     9
+    ]
+   },
+   {
+    "id": "carboxylic_acid",
+    "name": "Carboxylic acid",
+    "atoms": [
+     16,
+     3,
+     2
+    ]
+   },
+   {
+    "id": "sec_amide",
+    "name": "Amide side-chain link",
+    "atoms": [
+     18,
+     17,
+     4,
+     7,
+     12
+    ]
+   },
+   {
+    "id": "primary_amine",
+    "name": "Primary amine",
+    "atoms": [
+     8,
+     18
+    ]
+   },
+   {
+    "id": "phenol",
+    "name": "Phenol",
+    "atoms": [
+     24,
+     5
+    ]
+   },
+   {
+    "id": "gem_dimethyl",
+    "name": "Gem-dimethyl",
+    "atoms": [
+     14,
+     10,
+     15
+    ]
+   }
+  ],
+  "formula": 25,
+  "mcs": [
+   0,
+   9,
+   6,
+   11,
+   10,
+   14,
+   15,
+   16,
+   2,
+   3,
+   13,
+   12,
+   7,
+   17,
+   4,
+   18,
+   1
+  ],
+  "smiles": "[H]OC(=O)[C@]1([H])N2C(=O)[C@@]([H])(N([H])C(=O)[C@@]([H])(c3c([H])c([H])c(O[H])c([H])c3[H])N([H])[H])[C@@]2([H])SC1(C([H])([H])[H])C([H])([H])[H]"
+ },
+ "mcs": {
+  "smarts": "[#16]1-&@[#6]2-&@[#7](-&@[#6](-&@[#6]-&@1(-&!@[#6&!R])-&!@[#6&!R])-&!@[#6&!R](-&!@[#8&!R])=&!@[#8&!R])-&@[#6](-&@[#6]-&@2-&!@[#7&!R]-&!@[#6&!R](=&!@[#8&!R])-&!@[#6&!R])=&!@[#8&!R]",
+  "numAtoms": 17
+ }
+}

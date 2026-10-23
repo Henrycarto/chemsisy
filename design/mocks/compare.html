@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compare, Chemsisy (design mock)</title>
+<link rel="stylesheet" href="mock.css">
+<script src="vendor/3Dmol-min.js"></script>
+</head>
+<body>
+<header class="bar">
+  <a class="wordmark" href="#">Chemsisy</a>
+  <div class="search" role="search"><span data-i="search"></span><span class="ph">Brand, substance or ATC code</span><kbd>/</kbd></div>
+  <nav class="nav">
+    <a href="#" class="hide-md">Browse</a>
+    <a href="#" aria-current="page">Compare</a>
+    <a href="#" class="hide-md">About</a>
+    <button class="icon-btn" aria-label="Switch theme" data-i="theme"></button>
+    <button class="icon-btn" aria-label="Open the tour" data-i="help"></button>
+  </nav>
+</header>
+
+<main class="page" style="grid-template-columns:1fr">
+  <section>
+    <div class="cmp-head">
+      <h1>Compare</h1>
+      <span class="picker">Phenoxymethylpenicillin<span data-i="down"></span></span>
+      <button class="icon-btn" aria-label="Swap the two drugs" data-i="swap" style="border:1px solid var(--rule)"></button>
+      <span class="picker">Amoxicillin<span data-i="down"></span></span>
+      <span class="seg" role="group" aria-label="Highlight"><span aria-pressed="true">Shared core</span><span>Differences</span></span>
+    </div>
+
+    <div class="pair">
+      <figure style="margin:0">
+        <div class="ftitle"><b>Phenoxymethylpenicillin</b><span>Penicillin V, ATC J01CE02</span></div>
+        <div class="figure" id="figA" style="height:var(--fig-h)"><div class="viewer"></div><div class="overlay"></div></div>
+      </figure>
+      <figure style="margin:0">
+        <div class="ftitle"><b>Amoxicillin</b><span>Ospamox, ATC J01CA04</span></div>
+        <div class="figure" id="figB" style="height:var(--fig-h)"><div class="viewer"></div><div class="overlay"></div></div>
+      </figure>
+    </div>
+    <div class="legend">
+      <span><i></i>Shared core: penam, carboxylate and amide link, 17 atoms</span>
+      <span><i class="d"></i>Only in one drug</span>
+      <span>Both views turn together; amoxicillin is superimposed on the shared core.</span>
+    </div>
+
+    <div class="cmp-grid">
+      <table class="diff">
+        <caption>Functional groups</caption>
+        <thead><tr><th>Group</th><th>Penicillin V</th><th>Amoxicillin</th></tr></thead>
+        <tbody>
+          <tr><td>β-lactam ring</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+          <tr><td>Thiazolidine ring</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+          <tr><td>Carboxylic acid</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+          <tr><td>Amide link</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+          <tr><td>Aryl ether</td><td class="only">Yes</td><td class="n">No</td></tr>
+          <tr><td>Primary amine</td><td class="n">No</td><td class="only">Yes</td></tr>
+          <tr><td>Phenol</td><td class="n">No</td><td class="only">Yes</td></tr>
+        </tbody>
+      </table>
+      <div class="note">
+        <h2 style="border:0;padding:0 0 var(--s2)">What the difference teaches</h2>
+        <p>Both drugs keep the β-lactam ring intact; that part has to stay unchanged for any penicillin to work. What changes is the side chain on the amide link, and changing it is how semisynthetic penicillins gained a broader spectrum.</p>
+        <p>Amoxicillin's side chain carries a primary amine, the mark of the aminopenicillins, which were developed for better activity against Gram-negative bacteria than penicillin V.</p>
+        <ul class="sources">
+          <li><a href="https://openstax.org/books/microbiology/pages/14-3-mechanisms-of-antibacterial-drugs">OpenStax, <i>Microbiology</i>, 14.3 Mechanisms of Antibacterial Drugs</a> <span class="lic">CC BY 4.0</span></li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/">Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. <i>Cold Spring Harb Perspect Med</i> 2016;6:a025247</a> <span class="lic">Free full text</span></li>
+        </ul>
+        <div class="status-row"><span class="status">Sourced, not yet reviewed</span><a class="linkish" href="#">Suggest a correction</a></div>
+      </div>
+    </div>
+    <p class="disclaimer">For education. Not medical advice.</p>
+  </section>
+</main>
+
+<script type="module">
+import { figure, load, icon, theme, alignFrame, fitTogether } from "./mock.js";
+document.querySelectorAll("[data-i]").forEach((el) => {
+  const n = el.dataset.i === "theme" ? (theme === "dark" ? "sun" : "moon") : el.dataset.i;
+  el.insertAdjacentHTML("afterbegin", icon(n));
+});
+const wide = innerWidth >= 1100;
+document.documentElement.style.setProperty("--fig-h", wide ? "360px" : "340px");
+await document.fonts.ready;
+const [sA, sB, groups] = await Promise.all([load("data/6869.sdf"), load("data/33613.sdf"), load("data/groups.json").then(JSON.parse)]);
+const gA = Object.fromEntries(groups["6869"].groups.map((x) => [x.id, x.atoms]));
+const gB = Object.fromEntries(groups["33613"].groups.map((x) => [x.id, x.atoms]));
+const coreA = groups["6869"].mcs, coreB = groups["33613"].mcs;
+const col = wide ? 112 : 92;
+const A = figure(document.getElementById("figA"), sA, {
+  emphasis: coreA, face: coreA, labelColumn: col, rows: !wide,
+  labels: [
+    { atoms: coreA, text: "Shared core", kind: "shared" },
+    { atoms: gA.aryl_ether, text: "Aryl ether", kind: "diff" },
+  ],
+});
+const B = figure(document.getElementById("figB"), sB, {
+  emphasis: coreB, frame: alignFrame(sB, coreB, A.atoms, coreA), labelColumn: col, rows: !wide,
+  labels: [
+    { atoms: coreB, text: "Shared core", kind: "shared" },
+    { atoms: gB.primary_amine, text: "Primary amine", kind: "diff" },
+    { atoms: gB.phenol, text: "Phenol", kind: "diff" },
+  ],
+});
+fitTogether(A, B);
+A.v.linkViewer(B.v);
+B.v.linkViewer(A.v);
+document.body.dataset.ready = "1";
+</script>
+</body>
+</html>

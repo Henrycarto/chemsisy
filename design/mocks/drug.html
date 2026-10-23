@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amoxicillin, Chemsisy (design mock)</title>
+<link rel="stylesheet" href="mock.css">
+<script src="vendor/3Dmol-min.js"></script>
+</head>
+<body>
+<header class="bar">
+  <a class="wordmark" href="#">Chemsisy</a>
+  <div class="search" role="search"><span data-i="search"></span><span class="ph">Brand, substance or ATC code</span><kbd>/</kbd></div>
+  <nav class="nav">
+    <a href="#" class="hide-md">Browse</a>
+    <a href="#">Compare</a>
+    <a href="#" class="hide-md">About</a>
+    <button class="icon-btn" aria-label="Switch to dark theme" data-i="theme"></button>
+    <button class="icon-btn" aria-label="Open the tour" data-i="help"></button>
+  </nav>
+</header>
+
+<main class="page">
+  <section>
+    <div class="drug-head">
+      <h1>Amoxicillin</h1>
+      <dl class="facts">
+        <div><dt>Brand in Austria</dt><dd>Ospamox</dd></div>
+        <div><dt>ATC</dt><dd><span class="term">J01CA04</span></dd></div>
+        <div><dt>Class</dt><dd>Aminopenicillin, a <span class="term">β-lactam</span> antibiotic</dd></div>
+        <div><dt>Formula</dt><dd>C₁₆H₁₉N₃O₅S</dd></div>
+      </dl>
+    </div>
+    <figure style="margin:0">
+      <div class="figure" id="fig" style="height:var(--fig-h)">
+        <div class="viewer"></div>
+        <div class="overlay"></div>
+        <div class="fig-tools">
+          <span class="tool" data-i="reset">Reset view</span>
+          <span class="tool" aria-pressed="true" data-i="groups">All labels</span>
+          <span class="tool" data-i="table">Table</span>
+        </div>
+        <div class="keys"><span><kbd>←</kbd><kbd>→</kbd> rotate</span><span><kbd>Tab</kbd> next group</span></div>
+      </div>
+      <figcaption><b>Figure.</b> Amoxicillin with the β-lactam ring in focus. 3D conformer from PubChem (CID 33613); hydrogens on carbon are hidden. Drag to rotate, pinch or scroll to zoom.</figcaption>
+    </figure>
+  </section>
+
+  <aside class="col">
+    <div class="split">
+      <div>
+        <h2>Functional groups <span class="count">6</span></h2>
+        <ul class="groups">
+          <li class="group open">
+            <button aria-expanded="true"><span class="gname">β-lactam ring</span><span class="gcap">Strained four-membered amide; the part the bacterial enzyme attacks.</span></button>
+            <div class="note" id="note">
+              <p>The β-lactam ring is why amoxicillin works. Its shape resembles the part of the cell-wall building block that the cross-linking enzyme, a <span class="term tip-anchor" id="tt">transpeptidase</span>, recognises. The enzyme's active-site serine attacks the ring's carbonyl and is left as an inactive acyl enzyme, so the wall is no longer cross-linked.</p>
+              <p>The ring has to stay intact. Bacteria that make a β-lactamase open it, and the drug no longer binds.</p>
+              <ul class="sources">
+                <li><a href="https://openstax.org/books/microbiology/pages/14-3-mechanisms-of-antibacterial-drugs">OpenStax, <i>Microbiology</i>, 14.3 Mechanisms of Antibacterial Drugs</a> <span class="lic">CC BY 4.0</span></li>
+                <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/">Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. <i>Cold Spring Harb Perspect Med</i> 2016;6:a025247</a> <span class="lic">Free full text</span></li>
+              </ul>
+              <div class="status-row">
+                <span class="status">Sourced, not yet reviewed</span>
+                <a class="linkish" href="#">Suggest a correction</a>
+              </div>
+            </div>
+          </li>
+          <li class="group"><button aria-expanded="false"><span class="gname">Thiazolidine ring</span></button></li>
+          <li class="group"><button aria-expanded="false"><span class="gname">Amide link</span></button></li>
+          <li class="group"><button aria-expanded="false"><span class="gname">Primary amine</span></button></li>
+          <li class="group pending"><button aria-expanded="false"><span class="gname">Carboxylic acid</span><span class="gstate">Note in preparation</span></button></li>
+          <li class="group pending"><button aria-expanded="false"><span class="gname">Phenol</span><span class="gstate">Note in preparation</span></button></li>
+        </ul>
+      </div>
+      <div>
+        <div class="product">
+          <h3>Product information</h3>
+          <a href="https://medikamente.basg.gv.at/documents/17653__DOTC_FACH_INFO.pdf">Ospamox, summary of product characteristics <span data-i="ext"></span></a>
+          <p>Official text from BASG, the Austrian medicines agency. Indications and doses live there, not here.</p>
+        </div>
+        <p class="disclaimer">For education. Not medical advice.</p>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<script type="module">
+import { figure, load, icon, theme } from "./mock.js";
+document.querySelectorAll("[data-i]").forEach((el) => {
+  const n = el.dataset.i === "theme" ? (theme === "dark" ? "sun" : "moon") : el.dataset.i;
+  el.insertAdjacentHTML("afterbegin", icon(n));
+});
+const wide = innerWidth >= 1100;
+document.documentElement.style.setProperty("--fig-h", wide ? "560px" : "500px");
+if (new URLSearchParams(location.search).get("tip") === "1") {
+  document.getElementById("tt").insertAdjacentHTML("beforeend",
+    '<span class="tooltip" role="tooltip"><b>Transpeptidase.</b> The bacterial enzyme that cross-links peptidoglycan strands in the cell wall. Also called a penicillin-binding protein (PBP).</span>');
+}
+await document.fonts.ready;
+const [sdf, groups] = await Promise.all([load("data/33613.sdf"), load("data/groups.json").then(JSON.parse)]);
+const g = Object.fromEntries(groups["33613"].groups.map((x) => [x.id, x.atoms]));
+figure(document.getElementById("fig"), sdf, {
+  emphasis: g.beta_lactam,
+  labelColumn: wide ? 180 : 150,
+  face: g.beta_lactam,
+  labels: [
+    { atoms: g.beta_lactam, text: "β-lactam ring", cap: "Strained four-membered amide; the part the bacterial enzyme attacks.", kind: "focus" },
+    { atoms: g.thiazolidine, text: "Thiazolidine ring" },
+    { atoms: g.carboxylic_acid, text: "Carboxylic acid" },
+    { atoms: g.sec_amide, text: "Amide link" },
+    { atoms: g.primary_amine, text: "Primary amine" },
+    { atoms: g.phenol, text: "Phenol" },
+  ],
+});
+document.body.dataset.ready = "1";
+</script>
+</body>
+</html>

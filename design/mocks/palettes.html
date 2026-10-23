@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palettes, Chemsisy (design mock)</title>
+<link rel="stylesheet" href="mock.css">
+<script src="vendor/3Dmol-min.js"></script>
+</head>
+<body>
+<main class="board">
+  <h1>Three interface palettes</h1>
+  <p>Atoms always keep their CPK colours (carbon grey, oxygen red, nitrogen blue, sulfur yellow). The palette only colours the interface: the focus ring, leader lines, links and the "only in one drug" marks. Every accent avoids the hues CPK uses for common atoms, so a highlight is never mistaken for an element. All text pairs pass WCAG AA in both themes.</p>
+  <div id="rows"></div>
+</main>
+<script type="module">
+import { figure, load } from "./mock.js";
+const P = [
+  { id: "A", name: "Phenolphthalein", idea: "The indicator that turns magenta at the endpoint: the colour of the moment something becomes clear. Magenta is a hue CPK leaves unused.",
+    light: { Accent: "#A8226A", Secondary: "#5C6A14", Ink: "#1C2024", Background: "#F7F8F8", Rule: "#D5DADF" },
+    dark: { Accent: "#F07BB5", Secondary: "#B9C76A", Ink: "#E6E9EC", Background: "#141618", Rule: "#30363C" } },
+  { id: "B", name: "Sepia plate", idea: "The warm brown of engraved plates in old chemistry atlases, with a steel-grey second ink. Quiet and bookish; the highlight is calmer.",
+    light: { Accent: "#8A4A12", Secondary: "#46596A", Ink: "#1E1F21", Background: "#F8F8F7", Rule: "#D8D9DB" },
+    dark: { Accent: "#E3A469", Secondary: "#9DB2C4", Ink: "#E9E8E5", Background: "#151514", Rule: "#33332F" } },
+  { id: "C", name: "Notebook olive", idea: "The olive ink of a lab notebook, with a rust second ink for differences. Distinct and earthy; olive sits between sulfur yellow and halogen green, so it needs care near those atoms.",
+    light: { Accent: "#566500", Secondary: "#8C4A1E", Ink: "#1D201B", Background: "#F7F8F6", Rule: "#D6DAD2" },
+    dark: { Accent: "#C4D45C", Secondary: "#E2A47A", Ink: "#E7EAE3", Background: "#141613", Rule: "#30352C" } },
+];
+const sw = (o) => Object.entries(o).map(([k, v]) => `<div><i style="background:${v}"></i>${k} ${v}</div>`).join("");
+const mini = (p, t) => `
+  <div class="mini" data-palette="${p.id}" data-theme="${t}">
+    <div class="ttl"><span>${t === "light" ? "Light" : "Dark"}</span><span>Amoxicillin, β-lactam ring in focus</span></div>
+    <div class="figure" id="f${p.id}${t}"><div class="viewer"></div><div class="overlay"></div></div>
+    <div class="mlist">
+      <div class="on">β-lactam ring</div><div>Thiazolidine ring</div><div>Amide link</div><div class="diff">Primary amine, only here</div>
+      <span class="btn">Compare</span>
+      <a class="lnk" href="#">OpenStax, Microbiology 14.3</a>
+    </div>
+  </div>`;
+document.getElementById("rows").innerHTML = P.map((p) => `
+  <section class="prow">
+    <div class="pinfo"><h2>${p.id}. ${p.name}</h2><p>${p.idea}</p>
+      <div class="swatches">${sw(p.light)}</div><div class="swatches" style="margin-top:12px">${sw(p.dark)}</div></div>
+    ${mini(p, "light")}${mini(p, "dark")}
+  </section>`).join("");
+await document.fonts.ready;
+const [sdf, groups] = await Promise.all([load("data/33613.sdf"), load("data/groups.json").then(JSON.parse)]);
+const g = Object.fromEntries(groups["33613"].groups.map((x) => [x.id, x.atoms]));
+for (const p of P) for (const t of ["light", "dark"]) {
+  figure(document.getElementById(`f${p.id}${t}`), sdf, {
+    theme: t, emphasis: g.beta_lactam, face: g.beta_lactam, rows: true,
+    labels: [
+      { atoms: g.beta_lactam, text: "β-lactam ring", kind: "focus", row: "top" },
+      { atoms: g.primary_amine, text: "Primary amine", kind: "diff", row: "bottom" },
+    ],
+  });
+}
+document.body.dataset.ready = "1";
+</script>
+</body>
+</html>
