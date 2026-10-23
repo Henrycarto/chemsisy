@@ -3,6 +3,8 @@ import { figureReady, skipTour } from "./helpers.ts";
 
 test.describe("offline", () => {
   test("after one visit, the starter set works with the network off", async ({ page, context }) => {
+    // Three page loads and two 3D figures in software WebGL: slow on a busy machine.
+    test.slow();
     await skipTour(page);
     await page.goto("/");
     // Wait for the service worker to take control and finish precaching.
