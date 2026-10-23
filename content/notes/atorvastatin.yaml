@@ -1,0 +1,47 @@
+drug: atorvastatin
+groups:
+  statin_diol_acid:
+    caption: "The HMG-like dihydroxy acid that sits in the enzyme's substrate pocket."
+    body:
+      - "Atorvastatin ends in a (3R,5R)-3,5-dihydroxyheptanoic acid chain. This part resembles HMG-CoA and competes with it for HMG-CoA reductase; crystal structures show statins occupying part of the HMG-CoA binding site."
+      - "Every statin needs this dihydroxy acid to inhibit the enzyme. Atorvastatin already carries it in open form, so unlike simvastatin it needs no ring opening."
+    sources:
+      - citation: "ChEBI. atorvastatin (CHEBI:39548)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:39548"
+        licence: "CC BY 4.0"
+      - citation: "Alagona P Jr. Pitavastatin: evidence for its place in treatment of hypercholesterolemia. Core Evid 2010;5:91-105"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3065553/"
+        licence: "Free full text"
+      - citation: "Ko HHT, Lareu RR, Dix BR, Hughes JD. Statins: antimicrobial resistance breakers or makers? PeerJ 2017;5:e3952"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5659212/"
+        licence: "CC BY 4.0"
+      - citation: "RCSB PDB entry 1HWK. Istvan ES, Deisenhofer J. Structural mechanism for statin inhibition of HMG-CoA reductase. Science 2001;292:1160-1164 (abstract)"
+        url: "https://www.rcsb.org/structure/1HWK"
+        licence: "Free to read"
+  amide:
+    caption: "An N-phenyl carboxamide on the pyrrole core of this synthetic statin."
+    body:
+      - "Position 3 of atorvastatin's central pyrrole carries an anilinocarbonyl group, an aromatic amide linking the ring to a phenyl. It belongs to the nitrogen-containing ring scaffold that synthetic statins use in place of the hexahydronaphthalene ring system of the fungal statins."
+      - "Reviews state that these ring-based elements take part in binding to HMG-CoA reductase and that the number and type of contacts affect potency."
+    sources:
+      - citation: "ChEBI. atorvastatin (CHEBI:39548)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:39548"
+        licence: "CC BY 4.0"
+      - citation: "Alagona P Jr. Pitavastatin: evidence for its place in treatment of hypercholesterolemia. Core Evid 2010;5:91-105"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3065553/"
+        licence: "Free full text"
+  aryl_fluoride:
+    caption: "The 4-fluorophenyl shared by the synthetic statins."
+    body:
+      - "A 4-fluorophenyl ring sits on position 5 of the pyrrole. The synthetic statins share a fluorinated phenyl group, and reviews list it among the structural elements that bind HMG-CoA reductase."
+      - "The synthetic (type 2) statins, atorvastatin among them, bind the enzyme more tightly than the fungal ones. The sources used here do not separate how much of that comes from the fluorine itself."
+    sources:
+      - citation: "ChEBI. atorvastatin (CHEBI:39548)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:39548"
+        licence: "CC BY 4.0"
+      - citation: "Alagona P Jr. Pitavastatin: evidence for its place in treatment of hypercholesterolemia. Core Evid 2010;5:91-105"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3065553/"
+        licence: "Free full text"
+      - citation: "Ko HHT, Lareu RR, Dix BR, Hughes JD. Statins: antimicrobial resistance breakers or makers? PeerJ 2017;5:e3952"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5659212/"
+        licence: "CC BY 4.0"

@@ -1,0 +1,86 @@
+drug: amoxicillin
+groups:
+  beta_lactam:
+    caption: "Four-membered cyclic amide; the part that binds and disables the cell-wall enzyme."
+    body:
+      - "The β-lactam is an amide held in a four-membered ring that contains both the nitrogen and the carbonyl carbon. It binds covalently to penicillin-binding proteins, the enzymes that make the final peptidoglycan cross-links."
+      - "The result is an inactive acyl-enzyme on an active-site serine. β-Lactamases hydrolyse the same ring, and the drug is inactivated."
+    sources:
+      - citation: "ChEBI. β-lactam (CHEBI:35627)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:35627"
+        licence: "CC BY 4.0"
+      - citation: "Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/"
+        licence: "Free full text"
+  thiazolidine:
+    caption: "Five-membered sulfur ring fused to the β-lactam, completing the penam nucleus."
+    body:
+      - "The β-lactam is fused to a five-membered, sulfur-containing thiazolidine ring, the penam nucleus found in every penicillin."
+      - "Amoxicillin keeps this nucleus unchanged. What makes it different from other penicillins is only the side chain on position 6."
+    sources:
+      - citation: "Chaudhry SB, Veve MP, Wagner JL. Cephalosporins: a focus on side chains and β-lactam cross-reactivity. Pharmacy 2019;7(3):103"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6789778/"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. amoxicillin (CHEBI:2676)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. penicillin (CHEBI:17334)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334"
+        licence: "CC BY 4.0"
+  carboxylic_acid:
+    caption: "Position 3 carboxyl shared by all penicillins; it can lose a proton to form an anion."
+    body:
+      - "Every penicillin carries a carboxyl group at position 3 of the penam core. When it loses its proton the drug becomes a penicillinate anion."
+      - "β-Lactamases make use of it: in zinc-dependent enzymes, structural work describes the substrate carboxylate interacting with an active-site zinc ion."
+    sources:
+      - citation: "ChEBI. penicillin (CHEBI:17334)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. penicillinate anion (CHEBI:51356)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:51356"
+        licence: "CC BY 4.0"
+      - citation: "Tooke CL, Hinchliffe P, Bragginton EC, et al. β-Lactamases and β-lactamase inhibitors in the 21st century. J Mol Biol 2019;431(18):3472-3500"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6723624/"
+        licence: "CC BY 4.0"
+  amide:
+    caption: "Carboxamido link at position 6 that carries amoxicillin's side chain."
+    body:
+      - "The side chain is joined to the penam nucleus through an amide at position 6. In amoxicillin the acyl part is a 2-amino-2-(4-hydroxyphenyl)acetyl group."
+      - "The penicillins differ from one another at exactly this point: the nucleus stays the same and the acyl group on the amide changes."
+    sources:
+      - citation: "ChEBI. amoxicillin (CHEBI:2676)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. penicillin (CHEBI:17334)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334"
+        licence: "CC BY 4.0"
+  primary_amine:
+    caption: "Side-chain amino group shared with ampicillin and absent from penicillin V."
+    body:
+      - "Amoxicillin and ampicillin both carry an amino group on the carbon next to the side-chain amide. The two drugs brought improved activity against Gram-negative bacteria compared with earlier penicillins."
+      - "The sources used here record that gain without assigning a molecular mechanism to the amino group, so this note does not offer one."
+    sources:
+      - citation: "ChEBI. amoxicillin (CHEBI:2676)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. ampicillin (CHEBI:28971)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:28971"
+        licence: "CC BY 4.0"
+      - citation: "Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/"
+        licence: "Free full text"
+  phenol:
+    caption: "The para-hydroxyl that distinguishes amoxicillin from ampicillin."
+    body:
+      - "Amoxicillin differs from ampicillin only by a hydroxyl group at the para position of the side-chain benzene ring, making it a 4-hydroxyphenyl group."
+      - "In an early crossover study amoxicillin reached 2.1 to 2.9 times the absorption measured for ampicillin. That study does not explain why, so the role of the hydroxyl itself is left open here."
+    sources:
+      - citation: "ChEBI. amoxicillin (CHEBI:2676)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. ampicillin (CHEBI:28971)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:28971"
+        licence: "CC BY 4.0"
+      - citation: "Verbist L. Triple crossover study on absorption and excretion of ampicillin, pivampicillin, and amoxycillin. Antimicrob Agents Chemother 1974;6(5):588-593"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC444697/"
+        licence: "Free full text"

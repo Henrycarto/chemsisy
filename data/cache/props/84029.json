@@ -1,0 +1,15 @@
+{
+  "PropertyTable": {
+    "Properties": [
+      {
+        "CID": 84029,
+        "MolecularFormula": "C38H69NO13",
+        "MolecularWeight": "748.0",
+        "XLogP": 3.2,
+        "TPSA": 183,
+        "HBondDonorCount": 4,
+        "HBondAcceptorCount": 14
+      }
+    ]
+  }
+}

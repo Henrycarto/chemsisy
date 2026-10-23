@@ -1,0 +1,387 @@
+# Chemsisy starter set. Curated by hand; licensed CC BY 4.0 with the rest of content/.
+#
+# cid:       PubChem compound ID of the parent compound (structure and 3D conformer source)
+# atc:       ATC codes from Wikidata (CC0), each checked by hand
+# brands:    Austrian products checked in Medikamente Info Austria (BASG) on 2026-10-23;
+#            zulnr is the authorisation number used for the official document link
+# product:   the one official document the drug page links to
+#            basg: authorisation number, ema: EPAR slug, none: reason shown to the reader
+# synonyms:  other names students search for, including German INN spellings
+
+classes:
+  - id: analgesics
+    name: Analgesics and NSAIDs
+  - id: antibiotics
+    name: Antibiotics
+  - id: anticoagulants
+    name: Anticoagulants
+  - id: statins
+    name: Statins
+  - id: antihypertensives
+    name: Antihypertensives
+  - id: ppis
+    name: Proton pump inhibitors
+  - id: antidiabetics
+    name: Antidiabetics
+
+drugs:
+  - slug: acetylsalicylic-acid
+    name: Acetylsalicylic acid
+    cid: 2244
+    class: analgesics
+    atc: [N02BA01, B01AC06]
+    synonyms: [aspirin, ASS, Acetylsalicylsäure, ASA]
+    brands:
+      - { name: Aspirin, zulnr: 1-20680 }
+      - { name: Thrombo ASS, zulnr: 1-19830 }
+    product: { basg: 1-20680, label: "Aspirin 500 mg chewable tablets" }
+
+  - slug: paracetamol
+    name: Paracetamol
+    cid: 1983
+    class: analgesics
+    atc: [N02BE01]
+    synonyms: [acetaminophen, APAP]
+    brands:
+      - { name: Mexalen, zulnr: 1-18099 }
+    product: { basg: 1-18099, label: "Mexalen 500 mg tablets" }
+
+  - slug: ibuprofen
+    name: Ibuprofen
+    cid: 3672
+    class: analgesics
+    atc: [M01AE01]
+    synonyms: []
+    brands:
+      - { name: Nurofen, zulnr: 1-29918 }
+    product: { basg: 1-29918, label: "Nurofen 400 mg coated tablets" }
+
+  - slug: dexibuprofen
+    name: Dexibuprofen
+    cid: 39912
+    class: analgesics
+    atc: [M01AE14]
+    synonyms: [S-ibuprofen, "(S)-ibuprofen"]
+    brands:
+      - { name: Seractil, zulnr: 1-20001 }
+    product: { basg: 1-20001, label: "Seractil 200 mg film-coated tablets" }
+
+  - slug: diclofenac
+    name: Diclofenac
+    cid: 3033
+    class: analgesics
+    atc: [M01AB05]
+    synonyms: [Diclofenac-Natrium, diclofenac sodium]
+    brands:
+      - { name: Voltaren, zulnr: 1-16506 }
+    product: { basg: 1-16506, label: "Voltaren 50 mg film-coated tablets" }
+
+  - slug: naproxen
+    name: Naproxen
+    cid: 156391
+    class: analgesics
+    atc: [M01AE02]
+    synonyms: []
+    brands:
+      - { name: Proxen, zulnr: "17231" }
+    product: { basg: "17231", label: "Proxen 500 mg film-coated tablets" }
+
+  - slug: mefenamic-acid
+    name: Mefenamic acid
+    cid: 4044
+    class: analgesics
+    atc: [M01AG01]
+    synonyms: [Mefenaminsäure]
+    brands:
+      - { name: Parkemed, zulnr: "16288" }
+    product: { basg: "16288", label: "Parkemed 500 mg film-coated tablets" }
+
+  - slug: metamizole
+    name: Metamizole
+    cid: 3111
+    class: analgesics
+    atc: [N02BB02]
+    synonyms: [Metamizol, dipyrone, Novaminsulfon]
+    brands:
+      - { name: Novalgin, zulnr: "3192" }
+    product: { basg: "3192", label: "Novalgin film-coated tablets" }
+
+  - slug: phenoxymethylpenicillin
+    name: Phenoxymethylpenicillin
+    cid: 6869
+    class: antibiotics
+    atc: [J01CE02]
+    synonyms: [penicillin V, Penicillin V]
+    brands:
+      - { name: Ospen, zulnr: 1-18782 }
+    product: { basg: 1-18782, label: "Ospen 500 mg film-coated tablets" }
+
+  - slug: amoxicillin
+    name: Amoxicillin
+    cid: 33613
+    class: antibiotics
+    atc: [J01CA04]
+    synonyms: [Amoxicillin]
+    brands:
+      - { name: Ospamox, zulnr: "17653" }
+    product: { basg: "17653", label: "Ospamox 1000 mg film-coated tablets" }
+
+  - slug: cefuroxime
+    name: Cefuroxime
+    cid: 5479529
+    class: antibiotics
+    atc: [J01DC02]
+    synonyms: [Cefuroxim, cefuroxime axetil]
+    brands:
+      - { name: Zinnat, zulnr: 1-19105 }
+    product: { basg: 1-19105, label: "Zinnat 500 mg film-coated tablets" }
+
+  - slug: ciprofloxacin
+    name: Ciprofloxacin
+    cid: 2764
+    class: antibiotics
+    atc: [J01MA02]
+    synonyms: [Cipro]
+    brands:
+      - { name: Ciproxin, zulnr: 1-18296 }
+    product: { basg: 1-18296, label: "Ciproxin 500 mg film-coated tablets" }
+
+  - slug: doxycycline
+    name: Doxycycline
+    cid: 54671203
+    class: antibiotics
+    atc: [J01AA02]
+    synonyms: [Doxycyclin]
+    brands:
+      - { name: Doxybene, zulnr: 1-20851 }
+    product: { basg: 1-20851, label: "Doxybene 100 mg soluble tablets" }
+
+  - slug: clarithromycin
+    name: Clarithromycin
+    cid: 84029
+    class: antibiotics
+    atc: [J01FA09]
+    synonyms: []
+    brands:
+      - { name: Klacid, zulnr: 1-21527 }
+    product: { basg: 1-21527, label: "Klacid 500 mg film-coated tablets" }
+
+  - slug: warfarin
+    name: Warfarin
+    cid: 54678486
+    class: anticoagulants
+    atc: [B01AA03]
+    synonyms: []
+    brands: []
+    product:
+      none: "No medicine containing warfarin is listed in the Austrian medicines register (checked 23 October 2026), and it has no EU-wide authorisation."
+
+  - slug: apixaban
+    name: Apixaban
+    cid: 10182969
+    class: anticoagulants
+    atc: [B01AF02]
+    synonyms: []
+    brands:
+      - { name: Eliquis }
+    product: { ema: eliquis, label: "Eliquis, European public assessment report" }
+
+  - slug: rivaroxaban
+    name: Rivaroxaban
+    cid: 9875401
+    class: anticoagulants
+    atc: [B01AF01]
+    synonyms: []
+    brands:
+      - { name: Xarelto }
+    product: { ema: xarelto, label: "Xarelto, European public assessment report" }
+
+  - slug: dabigatran-etexilate
+    name: Dabigatran etexilate
+    cid: 135565674
+    class: anticoagulants
+    atc: [B01AE07]
+    synonyms: [Dabigatranetexilat]
+    brands:
+      - { name: Pradaxa }
+    product: { ema: pradaxa, label: "Pradaxa, European public assessment report" }
+
+  - slug: dabigatran
+    name: Dabigatran
+    cid: 216210
+    class: anticoagulants
+    atc: [B01AE07]
+    synonyms: []
+    brands: []
+    activeFormOf: dabigatran-etexilate
+    product: { ema: pradaxa, label: "Pradaxa (dabigatran etexilate), European public assessment report" }
+
+  - slug: simvastatin
+    name: Simvastatin
+    cid: 54454
+    class: statins
+    atc: [C10AA01]
+    synonyms: []
+    brands:
+      - { name: Zocord, zulnr: 1-19502 }
+    product: { basg: 1-19502, label: "Zocord 20 mg film-coated tablets" }
+
+  - slug: atorvastatin
+    name: Atorvastatin
+    cid: 60823
+    class: statins
+    atc: [C10AA05]
+    synonyms: []
+    brands:
+      - { name: Sortis, zulnr: 1-21928 }
+    product: { basg: 1-21928, label: "Sortis 20 mg film-coated tablets" }
+
+  - slug: rosuvastatin
+    name: Rosuvastatin
+    cid: 446157
+    class: statins
+    atc: [C10AA07]
+    synonyms: []
+    brands:
+      - { name: Crestor, zulnr: 1-24882 }
+    product: { basg: 1-24882, label: "Crestor 10 mg film-coated tablets" }
+
+  - slug: ramipril
+    name: Ramipril
+    cid: 5362129
+    class: antihypertensives
+    atc: [C09AA05]
+    synonyms: []
+    brands:
+      - { name: Tritace, zulnr: 1-20028 }
+    product: { basg: 1-20028, label: "Tritace 5 mg tablets" }
+
+  - slug: enalapril
+    name: Enalapril
+    cid: 5388962
+    class: antihypertensives
+    atc: [C09AA02]
+    synonyms: []
+    brands:
+      - { name: Renitec, zulnr: 1-18173 }
+    product: { basg: 1-18173, label: "Renitec 10 mg tablets" }
+
+  - slug: losartan
+    name: Losartan
+    cid: 3961
+    class: antihypertensives
+    atc: [C09CA01]
+    synonyms: []
+    brands:
+      - { name: Cosaar, zulnr: 1-28585 }
+    product: { basg: 1-28585, label: "Cosaar 50 mg film-coated tablets" }
+
+  - slug: valsartan
+    name: Valsartan
+    cid: 60846
+    class: antihypertensives
+    atc: [C09CA03]
+    synonyms: []
+    brands:
+      - { name: Diovan, zulnr: 1-24275 }
+    product: { basg: 1-24275, label: "Diovan 80 mg film-coated tablets" }
+
+  - slug: amlodipine
+    name: Amlodipine
+    cid: 2162
+    class: antihypertensives
+    atc: [C08CA01]
+    synonyms: [Amlodipin]
+    brands:
+      - { name: Norvasc, zulnr: 1-19247 }
+    product: { basg: 1-19247, label: "Norvasc 5 mg tablets" }
+
+  - slug: bisoprolol
+    name: Bisoprolol
+    cid: 2405
+    class: antihypertensives
+    atc: [C07AB07]
+    synonyms: []
+    brands:
+      - { name: Concor, zulnr: 1-18587 }
+    product: { basg: 1-18587, label: "Concor 5 mg film-coated tablets" }
+
+  - slug: metoprolol
+    name: Metoprolol
+    cid: 4171
+    class: antihypertensives
+    atc: [C07AB02]
+    synonyms: []
+    brands:
+      - { name: Beloc, zulnr: "16170" }
+    product: { basg: "16170", label: "Beloc 50 mg tablets" }
+
+  - slug: omeprazole
+    name: Omeprazole
+    cid: 4594
+    class: ppis
+    atc: [A02BC01]
+    synonyms: [Omeprazol]
+    brands:
+      - { name: Losec, zulnr: 1-19207 }
+    product: { basg: 1-19207, label: "Losec 20 mg gastro-resistant capsules" }
+
+  - slug: esomeprazole
+    name: Esomeprazole
+    cid: 9568614
+    class: ppis
+    atc: [A02BC05]
+    synonyms: [Esomeprazol]
+    brands:
+      - { name: Nexium, zulnr: 1-23716 }
+    product: { basg: 1-23716, label: "Nexium 20 mg gastro-resistant tablets" }
+
+  - slug: pantoprazole
+    name: Pantoprazole
+    cid: 4679
+    class: ppis
+    atc: [A02BC02]
+    synonyms: [Pantoprazol]
+    brands:
+      - { name: Pantoloc, zulnr: 1-21015 }
+    product: { basg: 1-21015, label: "Pantoloc 40 mg film-coated tablets" }
+
+  - slug: metformin
+    name: Metformin
+    cid: 4091
+    class: antidiabetics
+    atc: [A10BA02]
+    synonyms: []
+    brands:
+      - { name: Glucophage, zulnr: 1-24142 }
+    product: { basg: 1-24142, label: "Glucophage 1000 mg film-coated tablets" }
+
+  - slug: gliclazide
+    name: Gliclazide
+    cid: 3475
+    class: antidiabetics
+    atc: [A10BB09]
+    synonyms: [Gliclazid]
+    brands:
+      - { name: Diamicron, zulnr: 1-24000 }
+    product: { basg: 1-24000, label: "Diamicron MR 30 mg modified-release tablets" }
+
+  - slug: sitagliptin
+    name: Sitagliptin
+    cid: 4369359
+    class: antidiabetics
+    atc: [A10BH01]
+    synonyms: []
+    brands:
+      - { name: Januvia }
+    product: { ema: januvia, label: "Januvia, European public assessment report" }
+
+  - slug: empagliflozin
+    name: Empagliflozin
+    cid: 11949646
+    class: antidiabetics
+    atc: [A10BK03]
+    synonyms: []
+    brands:
+      - { name: Jardiance }
+    product: { ema: jardiance, label: "Jardiance, European public assessment report" }

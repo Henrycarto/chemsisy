@@ -1,0 +1,15 @@
+{
+  "PropertyTable": {
+    "Properties": [
+      {
+        "CID": 3961,
+        "MolecularFormula": "C22H23ClN6O",
+        "MolecularWeight": "422.9",
+        "XLogP": 4.3,
+        "TPSA": 92.5,
+        "HBondDonorCount": 2,
+        "HBondAcceptorCount": 5
+      }
+    ]
+  }
+}

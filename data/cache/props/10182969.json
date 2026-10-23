@@ -1,0 +1,15 @@
+{
+  "PropertyTable": {
+    "Properties": [
+      {
+        "CID": 10182969,
+        "MolecularFormula": "C25H25N5O4",
+        "MolecularWeight": "459.5",
+        "XLogP": 2.2,
+        "TPSA": 111,
+        "HBondDonorCount": 1,
+        "HBondAcceptorCount": 5
+      }
+    ]
+  }
+}

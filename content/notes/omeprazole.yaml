@@ -1,0 +1,53 @@
+drug: omeprazole
+groups:
+  benzimidazole:
+    caption: "Protonating this ring is the second step that switches on activation."
+    body:
+      - "The benzimidazole N3 is much less basic than the pyridine nitrogen, so it only picks up a proton in strong acid. Once charged, it pulls electron density away from C2 and leaves that carbon open to attack by the pyridine nitrogen."
+      - "That attack begins the rearrangement to the reactive form, and the pH dependence of activation follows protonation of this ring."
+    sources:
+      - citation: "Roche VF. The chemically elegant proton pump inhibitors. Am J Pharm Educ 2006;70(5):101"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1637016/"
+        licence: "Free full text"
+      - citation: "Shin JM, Kim N. Pharmacokinetics and pharmacodynamics of the proton pump inhibitors. J Neurogastroenterol Motil 2013;19(1):25-35"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3548122/"
+        licence: "CC BY-NC 3.0"
+  pyridine:
+    caption: "A weak base (pKa about 4) that traps the drug where acid is strongest."
+    body:
+      - "With a pKa near 4, the pyridine nitrogen is mostly protonated only in a very acidic space such as the secretory canaliculus of the parietal cell. The charged form cannot easily leave, so the drug builds up next to the H⁺/K⁺-ATPase, around 1000 times its blood level."
+      - "In its uncharged form the same nitrogen is the nucleophile that attacks the benzimidazole to start activation."
+    sources:
+      - citation: "Shin JM, Kim N. Pharmacokinetics and pharmacodynamics of the proton pump inhibitors. J Neurogastroenterol Motil 2013;19(1):25-35"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3548122/"
+        licence: "CC BY-NC 3.0"
+      - citation: "Roche VF. The chemically elegant proton pump inhibitors. Am J Pharm Educ 2006;70(5):101"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1637016/"
+        licence: "Free full text"
+  sulfoxide:
+    caption: "Inert as given; acid turns it into a sulfenamide that grabs pump cysteines."
+    body:
+      - "The sulfinyl bridge cannot bond to the enzyme as it stands. After two protonations, a rearrangement through a spiro intermediate gives a sulfenic acid and then a cyclic cationic sulfenamide, which forms disulfide bonds with cysteines of the H⁺/K⁺-ATPase (Cys813 and Cys892 for omeprazole)."
+      - "The sulfur is a stereocentre, and omeprazole is a racemate of R and S forms. Calling it a prodrug is debated, as activation needs acid, not enzymes."
+    sources:
+      - citation: "Roche VF. The chemically elegant proton pump inhibitors. Am J Pharm Educ 2006;70(5):101"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1637016/"
+        licence: "Free full text"
+      - citation: "Shin JM, Kim N. Pharmacokinetics and pharmacodynamics of the proton pump inhibitors. J Neurogastroenterol Motil 2013;19(1):25-35"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3548122/"
+        licence: "CC BY-NC 3.0"
+      - citation: "ChEBI. omeprazole (CHEBI:7772)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:7772"
+        licence: "CC BY 4.0"
+  aryl_ether:
+    caption: "Methoxy groups tune the electron density of both rings."
+    body:
+      - "Omeprazole carries two methoxy groups: one at position 4 of the pyridine and one at position 5 of the benzimidazole. The pyridine methoxy donates electrons by resonance to the ring nitrogen, making the uncharged nitrogen a better nucleophile for the activation step."
+      - "Pantoprazole swaps the benzimidazole methoxy for a difluoromethoxy, and that change lowers its reactivity."
+    sources:
+      - citation: "Roche VF. The chemically elegant proton pump inhibitors. Am J Pharm Educ 2006;70(5):101"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1637016/"
+        licence: "Free full text"
+      - citation: "ChEBI. omeprazole (CHEBI:7772)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:7772"
+        licence: "CC BY 4.0"

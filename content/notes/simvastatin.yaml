@@ -1,0 +1,50 @@
+drug: simvastatin
+groups:
+  lactone:
+    caption: "A closed ring that must be opened to give the active hydroxy acid."
+    body:
+      - "Simvastatin is given as a six-membered lactone, a cyclic ester. In this closed form it lacks the free dihydroxy acid that statins need to block HMG-CoA reductase, so it is a prodrug."
+      - "Hydrolysis in the gut and liver opens the ring to give simvastatin hydroxy acid, a 3,5-dihydroxyheptanoic acid, which is the active form."
+    sources:
+      - citation: "Ko HHT, Lareu RR, Dix BR, Hughes JD. Statins: antimicrobial resistance breakers or makers? PeerJ 2017;5:e3952"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5659212/"
+        licence: "CC BY 4.0"
+      - citation: "Alagona P Jr. Pitavastatin: evidence for its place in treatment of hypercholesterolemia. Core Evid 2010;5:91-105"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3065553/"
+        licence: "Free full text"
+      - citation: "ChEBI. simvastatin hydroxy acid (CHEBI:169041)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:169041"
+        licence: "CC BY 4.0"
+  ester:
+    caption: "The 2,2-dimethylbutyrate side chain: one extra methyl sets it apart from lovastatin."
+    body:
+      - "A 2,2-dimethylbutyrate ester sits on the hexahydronaphthalene ring. Lovastatin has a 2-methylbutyrate here instead, and that single methyl is essentially the only difference between the two."
+      - "Unlike the lactone, this ester is still present in the active hydroxy acid. Reviews describe the naphthalenyl ester base of fungal statins as part of the structure that binds the enzyme."
+    sources:
+      - citation: "ChEBI. simvastatin (CHEBI:9150)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:9150"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. simvastatin hydroxy acid (CHEBI:169041)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:169041"
+        licence: "CC BY 4.0"
+      - citation: "Ko HHT, Lareu RR, Dix BR, Hughes JD. Statins: antimicrobial resistance breakers or makers? PeerJ 2017;5:e3952"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5659212/"
+        licence: "CC BY 4.0"
+      - citation: "Alagona P Jr. Pitavastatin: evidence for its place in treatment of hypercholesterolemia. Core Evid 2010;5:91-105"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3065553/"
+        licence: "Free full text"
+  alcohol:
+    caption: "The ring hydroxyl becomes the β-hydroxy of the active acid."
+    body:
+      - "The lactone ring carries one hydroxyl group. When the ring opens, this alcohol becomes the 3-hydroxy (β to the new carboxylic acid) and the former ring oxygen becomes a second hydroxyl at C5, giving the 3,5-dihydroxy acid."
+      - "Both carbons are stereocentres, with R configuration in the active acid; the dihydroxy acid is what statins need to inhibit HMG-CoA reductase."
+    sources:
+      - citation: "ChEBI. simvastatin (CHEBI:9150)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:9150"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. simvastatin hydroxy acid (CHEBI:169041)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:169041"
+        licence: "CC BY 4.0"
+      - citation: "Ko HHT, Lareu RR, Dix BR, Hughes JD. Statins: antimicrobial resistance breakers or makers? PeerJ 2017;5:e3952"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5659212/"
+        licence: "CC BY 4.0"

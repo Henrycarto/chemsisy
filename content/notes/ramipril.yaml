@@ -1,0 +1,47 @@
+drug: ramipril
+groups:
+  proline_like:
+    caption: "A bicyclic proline analogue: a cyclopentane ring fused onto the proline ring."
+    body:
+      - "Ramipril keeps the carboxylic acid of a proline-type ring but adds a fused cyclopentane, giving a bicyclic azabicycloalkane. In the C-domain of ACE, this larger hydrophobic end makes extra contacts with Val379 and Val380, one reason ramipril binds that domain more tightly than enalapril."
+    sources:
+      - citation: "Zheng W, Tian E, Liu Z, et al. Small molecule angiotensin converting enzyme inhibitors: a medicinal chemistry perspective. Front Pharmacol. 2022;13:968104"
+        url: "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2022.968104/full"
+        licence: "CC BY"
+      - citation: "ChEBI. Ramipril (CHEBI:8774). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:8774"
+        licence: "CC BY 4.0"
+  ester:
+    caption: "An ethyl ester makes ramipril a prodrug, hydrolysed to the active ramiprilat."
+    body:
+      - "Ramipril carries one of its two carboxylic acids as an ethyl ester. Hydrolysis of this ester produces ramiprilat, the active metabolite, so ramipril is classed as a prodrug."
+      - "Unmasking the acid matters because ACE inhibitors of this family bind the zinc ion of the enzyme's active site through a carboxyl group."
+    sources:
+      - citation: "ChEBI. Ramipril (CHEBI:8774). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:8774"
+        licence: "CC BY 4.0"
+      - citation: "Zheng W, Tian E, Liu Z, et al. Small molecule angiotensin converting enzyme inhibitors: a medicinal chemistry perspective. Front Pharmacol. 2022;13:968104"
+        url: "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2022.968104/full"
+        licence: "CC BY"
+  amide:
+    caption: "The amide makes ramipril a dipeptide, like enalapril."
+    body:
+      - "An amide joins the alanine unit to the nitrogen of the bicyclic ring, so ChEBI classes ramipril as a dipeptide. Structurally, ramipril is enalapril with an extra cyclopentane ring, and this peptide-like backbone is shared by both."
+    sources:
+      - citation: "ChEBI. Ramipril (CHEBI:8774). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:8774"
+        licence: "CC BY 4.0"
+      - citation: "Zheng W, Tian E, Liu Z, et al. Small molecule angiotensin converting enzyme inhibitors: a medicinal chemistry perspective. Front Pharmacol. 2022;13:968104"
+        url: "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2022.968104/full"
+        licence: "CC BY"
+  secondary_amine:
+    caption: "A basic NH sits beside the acids, so ramipril is both a Brønsted acid and base."
+    body:
+      - "The secondary amine connects the ester-bearing phenylbutanoate side chain to the alanine of the dipeptide, in the same position as in enalapril. With this amine and a free carboxylic acid in one molecule, ChEBI lists ramipril as both a Brønsted acid and a Brønsted base."
+    sources:
+      - citation: "ChEBI. Ramipril (CHEBI:8774). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:8774"
+        licence: "CC BY 4.0"
+      - citation: "Zheng W, Tian E, Liu Z, et al. Small molecule angiotensin converting enzyme inhibitors: a medicinal chemistry perspective. Front Pharmacol. 2022;13:968104"
+        url: "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2022.968104/full"
+        licence: "CC BY"

@@ -1,0 +1,64 @@
+drug: pantoprazole
+groups:
+  benzimidazole:
+    caption: "Same activating ring as omeprazole, but harder to protonate here."
+    body:
+      - "As in other proton pump inhibitors, protonation of the benzimidazole N3 makes C2 open to attack by the pyridine nitrogen and starts the acid rearrangement. In pantoprazole the 5-difluoromethoxy group strongly hinders that protonation."
+      - "A 2006 review rated it the least reactive marketed drug of the class, which fits a 2013 ranking that puts it ahead of omeprazole, lansoprazole and rabeprazole for acid stability."
+    sources:
+      - citation: "Roche VF. The chemically elegant proton pump inhibitors. Am J Pharm Educ 2006;70(5):101"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1637016/"
+        licence: "Free full text"
+      - citation: "Shin JM, Kim N. Pharmacokinetics and pharmacodynamics of the proton pump inhibitors. J Neurogastroenterol Motil 2013;19(1):25-35"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3548122/"
+        licence: "CC BY-NC 3.0"
+  pyridine:
+    caption: "Weakly basic nitrogen (pKa about 4) that concentrates the drug in acid."
+    body:
+      - "Like omeprazole, pantoprazole is a weak base with a pKa of about 4. Its pyridine nitrogen is protonated in the very acidic canaliculus of the parietal cell, which traps the drug beside the H⁺/K⁺-ATPase."
+      - "In its uncharged form, this nitrogen attacks the benzimidazole to begin activation."
+    sources:
+      - citation: "Shin JM, Kim N. Pharmacokinetics and pharmacodynamics of the proton pump inhibitors. J Neurogastroenterol Motil 2013;19(1):25-35"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3548122/"
+        licence: "CC BY-NC 3.0"
+      - citation: "Roche VF. The chemically elegant proton pump inhibitors. Am J Pharm Educ 2006;70(5):101"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1637016/"
+        licence: "Free full text"
+  difluoromethoxy:
+    caption: "Electron-withdrawing OCHF₂ slows acid activation and changes cysteine choice."
+    body:
+      - "Pantoprazole has a difluoromethoxy group where omeprazole has a methoxy, at position 5 of the benzimidazole. The two fluorines make it electron-withdrawing, which makes N3 harder to protonate and so slows the acid-driven rearrangement."
+      - "Pantoprazole is the most acid-stable in a published ranking of the class, and it bonds to Cys813 and Cys822 of the pump rather than favouring Cys813."
+    sources:
+      - citation: "Roche VF. The chemically elegant proton pump inhibitors. Am J Pharm Educ 2006;70(5):101"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1637016/"
+        licence: "Free full text"
+      - citation: "Shin JM, Kim N. Pharmacokinetics and pharmacodynamics of the proton pump inhibitors. J Neurogastroenterol Motil 2013;19(1):25-35"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3548122/"
+        licence: "CC BY-NC 3.0"
+      - citation: "ChEBI. pantoprazole (CHEBI:7915)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:7915"
+        licence: "CC BY 4.0"
+  sulfoxide:
+    caption: "The latent warhead: acid converts it into a cysteine-reactive sulfenamide."
+    body:
+      - "The sulfinyl group linking the two rings is not reactive on its own. In acid the molecule rearranges, and the sulfur ends up in a cationic sulfenic acid or sulfenamide that forms disulfide bonds with cysteine side chains of the H⁺/K⁺-ATPase."
+      - "For pantoprazole these are Cys813 and Cys822; the bond to Cys822 gives the inhibited enzyme unusual properties."
+    sources:
+      - citation: "Shin JM, Kim N. Pharmacokinetics and pharmacodynamics of the proton pump inhibitors. J Neurogastroenterol Motil 2013;19(1):25-35"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3548122/"
+        licence: "CC BY-NC 3.0"
+      - citation: "Roche VF. The chemically elegant proton pump inhibitors. Am J Pharm Educ 2006;70(5):101"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1637016/"
+        licence: "Free full text"
+  aryl_ether:
+    caption: "A 4-methoxy pushes electrons onto the pyridine nitrogen."
+    body:
+      - "The pyridine ring carries methoxy groups at positions 3 and 4. A methoxy at position 4 donates electrons by resonance to the ring nitrogen, which makes the uncharged nitrogen a better nucleophile for the first step of activation."
+    sources:
+      - citation: "Roche VF. The chemically elegant proton pump inhibitors. Am J Pharm Educ 2006;70(5):101"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC1637016/"
+        licence: "Free full text"
+      - citation: "ChEBI. pantoprazole (CHEBI:7915)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:7915"
+        licence: "CC BY 4.0"

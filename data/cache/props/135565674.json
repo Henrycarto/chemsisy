@@ -1,0 +1,15 @@
+{
+  "PropertyTable": {
+    "Properties": [
+      {
+        "CID": 135565674,
+        "MolecularFormula": "C34H41N7O5",
+        "MolecularWeight": "627.7",
+        "XLogP": 5.3,
+        "TPSA": 152,
+        "HBondDonorCount": 3,
+        "HBondAcceptorCount": 9
+      }
+    ]
+  }
+}

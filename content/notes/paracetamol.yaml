@@ -1,0 +1,28 @@
+drug: paracetamol
+groups:
+  acetanilide:
+    caption: "An N-acetyl amide on 4-aminophenol; removing it starts one proposed route to AM404."
+    body:
+      - "Paracetamol is 4-aminophenol with an acetyl group on the nitrogen, so the acetyl is held as an amide. One proposed mechanism starts with deacetylation to p-aminophenol, which is converted, mainly in the brain, to AM404 by the enzyme FAAH. AM404 activates TRPV1."
+      - "How paracetamol works is still not fully understood, and this route is one hypothesis."
+    sources:
+      - citation: "ChEBI. Paracetamol (CHEBI:46195). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:46195"
+        licence: "CC BY 4.0"
+      - citation: "Mallet C, Desmeules J, Pegahi R, Eschalier A. An updated review on the metabolite (AM404)-mediated central mechanism of action of paracetamol (acetaminophen). J Pain Res. 2023;16:1081-1094"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10066900/"
+        licence: "CC BY-NC 3.0"
+  phenol:
+    caption: "The phenol OH is where sulfate and glucuronic acid are attached in metabolism."
+    body:
+      - "The para hydroxy group makes paracetamol a phenol. Two of its recorded metabolites are formed on this oxygen: paracetamol sulfate, where the OH becomes a sulfooxy group, and an O-glucuronide, both classed as drug metabolites."
+    sources:
+      - citation: "ChEBI. Paracetamol (CHEBI:46195). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:46195"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. Paracetamol sulfate (CHEBI:32635). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:32635"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. Acetaminophen O-β-D-glucosiduronic acid (CHEBI:32636). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:32636"
+        licence: "CC BY 4.0"

@@ -1,0 +1,47 @@
+drug: enalapril
+groups:
+  proline_like:
+    caption: "The proline ring ends the molecule with a carboxylic acid that anchors it in ACE."
+    body:
+      - "Enalapril ends in an L-proline unit that carries a free carboxylic acid. In crystal structures of ACE with related inhibitors such as captopril and lisinopril, this proline carboxylate is held by conserved residues of the enzyme (Gln281, Lys511 and Tyr520), while the ring itself makes hydrophobic contacts."
+    sources:
+      - citation: "Zheng W, Tian E, Liu Z, et al. Small molecule angiotensin converting enzyme inhibitors: a medicinal chemistry perspective. Front Pharmacol. 2022;13:968104"
+        url: "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2022.968104/full"
+        licence: "CC BY"
+      - citation: "ChEBI. Enalapril (CHEBI:4784). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:4784"
+        licence: "CC BY 4.0"
+  ester:
+    caption: "An ethyl ester masks one acid: enalapril is a prodrug of enalaprilat."
+    body:
+      - "Enalapril is a dicarboxylic acid in which one acid is capped as an ethyl ester. Hydrolysis of that ester gives enalaprilat, the active diacid, so enalapril itself is classed as a prodrug."
+      - "The freed carboxylate matters because ACE is a zinc enzyme: in this inhibitor family a carboxyl group binds the catalytic zinc ion, as shown for enalaprilat and lisinopril."
+    sources:
+      - citation: "ChEBI. Enalapril (CHEBI:4784). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:4784"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. Enalaprilat (CHEBI:4786). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:4786"
+        licence: "CC BY 4.0"
+      - citation: "Zheng W, Tian E, Liu Z, et al. Small molecule angiotensin converting enzyme inhibitors: a medicinal chemistry perspective. Front Pharmacol. 2022;13:968104"
+        url: "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2022.968104/full"
+        licence: "CC BY"
+  amide:
+    caption: "A peptide bond joins alanine to proline, so enalapril is classed as a dipeptide."
+    body:
+      - "The amide links the alanine unit to the ring nitrogen of proline, which makes it a tertiary amide. Because of this bond, ChEBI classes enalapril as a dipeptide. That peptide-like end suits the target: ACE is a dipeptidase that cuts the C-terminal dipeptide His-Leu from angiotensin I."
+    sources:
+      - citation: "ChEBI. Enalapril (CHEBI:4784). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:4784"
+        licence: "CC BY 4.0"
+      - citation: "Zheng W, Tian E, Liu Z, et al. Small molecule angiotensin converting enzyme inhibitors: a medicinal chemistry perspective. Front Pharmacol. 2022;13:968104"
+        url: "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2022.968104/full"
+        licence: "CC BY"
+  secondary_amine:
+    caption: "The NH links the ester-bearing side chain to the alanyl-proline dipeptide."
+    body:
+      - "ChEBI describes enalapril as ethyl 4-phenylbutanoate whose α-carbon carries the amino group of L-alanyl-L-proline. That amino nitrogen is the secondary amine. It gives the molecule a basic site alongside its acidic carboxylic acid, which is why ChEBI lists enalapril as both a Brønsted acid and a Brønsted base."
+    sources:
+      - citation: "ChEBI. Enalapril (CHEBI:4784). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:4784"
+        licence: "CC BY 4.0"

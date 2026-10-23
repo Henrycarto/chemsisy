@@ -1,0 +1,167 @@
+# Comparisons with a note on what the difference teaches. CC BY 4.0.
+comparisons:
+- a: phenoxymethylpenicillin
+  b: amoxicillin
+  title: What the side chain changes
+  note:
+    caption: Same penam nucleus; only the acyl group on position 6 differs.
+    body:
+    - 'Both drugs share the fused β-lactam and thiazolidine nucleus with its position 3 carboxylate. They differ only at position
+      6: a phenoxyacetyl group in penicillin V, a 2-amino-2-(4-hydroxyphenyl)acetyl group in amoxicillin.'
+    - Penicillin V is relatively stable to gastric acid. Amoxicillin and ampicillin, which carry the side-chain amino group,
+      brought improved activity against Gram-negative bacteria.
+    sources:
+    - citation: ChEBI. penicillin (CHEBI:17334)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334
+      licence: CC BY 4.0
+    - citation: ChEBI. phenoxymethylpenicillin (CHEBI:27446)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:27446
+      licence: CC BY 4.0
+    - citation: ChEBI. amoxicillin (CHEBI:2676)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676
+      licence: CC BY 4.0
+    - citation: 'Rawson TM, Wilson RC, Moore LSP, et al. Exploring the pharmacokinetics of phenoxymethylpenicillin (penicillin-V)
+        in adults: a healthy volunteer study. Open Forum Infect Dis 2021;8(12):ofab573'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC8684501/
+      licence: CC BY-NC-ND 4.0
+    - citation: 'Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/
+      licence: Free full text
+- a: amoxicillin
+  b: cefuroxime
+  title: Penam versus cephem core
+  note:
+    caption: Same β-lactam, fused to a five-membered or a six-membered sulfur ring.
+    body:
+    - Both bind penicillin-binding proteins through the same β-lactam. In amoxicillin it is fused to a five-membered thiazolidine
+      ring; in cefuroxime, to a six-membered dihydrothiazine.
+    - The cephalosporin core carries two variable side chains, R1 and R2, where a penicillin has one. Cefuroxime's R1 holds
+      a methoxyimino group, a feature of the oxyimino cephalosporins developed to counter β-lactamases.
+    sources:
+    - citation: Tooke CL, Hinchliffe P, Bragginton EC, et al. β-Lactamases and β-lactamase inhibitors in the 21st century.
+        J Mol Biol 2019;431(18):3472-3500
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC6723624/
+      licence: CC BY 4.0
+    - citation: 'Chaudhry SB, Veve MP, Wagner JL. Cephalosporins: a focus on side chains and β-lactam cross-reactivity. Pharmacy
+        2019;7(3):103'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC6789778/
+      licence: CC BY 4.0
+    - citation: ChEBI. penicillin (CHEBI:17334)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334
+      licence: CC BY 4.0
+    - citation: 'Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/
+      licence: Free full text
+- a: omeprazole
+  b: pantoprazole
+  title: One core, two substituent patterns
+  note:
+    caption: Same benzimidazole sulfoxide core; OCHF₂ versus OCH₃ changes how fast acid activates it.
+    body:
+    - Both drugs link a pyridine and a benzimidazole through a sulfinyl bridge, and both are weak bases (pKa about 4) that
+      are activated by acid. Omeprazole has a 5-methoxy on the benzimidazole and a 4-methoxy-3,5-dimethyl pyridine; pantoprazole
+      has a 5-difluoromethoxy and a 3,4-dimethoxy pyridine.
+    - The electron-withdrawing OCHF₂ makes pantoprazole slower to activate and more acid-stable, and it bonds Cys813 and Cys822
+      rather than Cys813 and Cys892.
+    sources:
+    - citation: Roche VF. The chemically elegant proton pump inhibitors. Am J Pharm Educ 2006;70(5):101
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1637016/
+      licence: Free full text
+    - citation: Shin JM, Kim N. Pharmacokinetics and pharmacodynamics of the proton pump inhibitors. J Neurogastroenterol
+        Motil 2013;19(1):25-35
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3548122/
+      licence: CC BY-NC 3.0
+    - citation: ChEBI. pantoprazole (CHEBI:7915)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:7915
+      licence: CC BY 4.0
+- a: simvastatin
+  b: atorvastatin
+  title: Closed ring or open acid
+  note:
+    caption: Simvastatin's lactone must open; atorvastatin already has the dihydroxy acid.
+    body:
+    - 'Both drugs inhibit HMG-CoA reductase through a 3,5-dihydroxy acid side chain. Simvastatin, a fungal-type statin, carries
+      it closed up as a lactone and is a prodrug: hydrolysis opens the ring to the active hydroxy acid.'
+    - Atorvastatin is a synthetic statin with the acid already open, built on a pyrrole carrying a fluorophenyl and a phenyl
+      amide instead of a naphthalene ester.
+    sources:
+    - citation: 'Ko HHT, Lareu RR, Dix BR, Hughes JD. Statins: antimicrobial resistance breakers or makers? PeerJ 2017;5:e3952'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5659212/
+      licence: CC BY 4.0
+    - citation: 'Alagona P Jr. Pitavastatin: evidence for its place in treatment of hypercholesterolemia. Core Evid 2010;5:91-105'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3065553/
+      licence: Free full text
+    - citation: ChEBI. atorvastatin (CHEBI:39548)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:39548
+      licence: CC BY 4.0
+- a: enalapril
+  b: ramipril
+  title: Two ethyl ester prodrugs of ACE inhibitors
+  note:
+    caption: Same ester prodrug trick; ramipril adds a cyclopentane ring to the proline.
+    body:
+    - Both drugs are dipeptides with one carboxylic acid capped as an ethyl ester. Hydrolysis of that ester gives the active
+      diacids, enalaprilat and ramiprilat, whose carboxyl group binds the zinc ion of ACE.
+    - 'The difference lies at the proline end: ramipril fuses a cyclopentane onto the ring. In the C-domain of ACE this adds
+      hydrophobic contacts with Val379 and Val380.'
+    sources:
+    - citation: ChEBI. Enalaprilat (CHEBI:4786). European Bioinformatics Institute
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:4786
+      licence: CC BY 4.0
+    - citation: ChEBI. Ramipril (CHEBI:8774). European Bioinformatics Institute
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:8774
+      licence: CC BY 4.0
+    - citation: 'Zheng W, Tian E, Liu Z, et al. Small molecule angiotensin converting enzyme inhibitors: a medicinal chemistry
+        perspective. Front Pharmacol. 2022;13:968104'
+      url: https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2022.968104/full
+      licence: CC BY
+- a: losartan
+  b: valsartan
+  title: One biphenyl tetrazole, two different partners
+  note:
+    caption: Both are biphenylyltetrazoles; valsartan swaps the imidazole for acylated valine.
+    body:
+    - 'Both molecules carry a tetrazole, an acidic stand-in for a carboxylic acid, on a biphenyl joined by a methylene to
+      a second unit. In losartan that unit is a substituted imidazole. In valsartan it is open-chain: L-valine whose nitrogen
+      bears a pentanoyl group, forming an amide.'
+    - Valsartan already has a carboxylic acid, whereas losartan gains one only when its hydroxymethyl group is oxidised to
+      the metabolite EXP3174.
+    sources:
+    - citation: ChEBI. Losartan (CHEBI:6541). European Bioinformatics Institute
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:6541
+      licence: CC BY 4.0
+    - citation: ChEBI. Valsartan (CHEBI:9927). European Bioinformatics Institute
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:9927
+      licence: CC BY 4.0
+    - citation: Rapposelli S, Cuboni S, Digiacomo M, et al. Synthesis and AT1 affinity evaluation of benzamidophenyl analogs
+        of known AT1 receptor ligands with similar aromatic skeleton. ARKIVOC. 2008;(ii):268-286
+      url: https://arkat-usa.org/get-file/23351
+      licence: Free full text
+    - citation: 'Yuan Y, Li M, Apostolopoulos V, et al. Tetrazoles: a multi-potent motif in drug design. Eur J Med Chem. 2024;279:116870'
+      url: https://vuir.vu.edu.au/49281/
+      licence: CC BY 4.0
+- a: acetylsalicylic-acid
+  b: paracetamol
+  title: Why one acetylates cyclooxygenase and the other does not
+  note:
+    caption: Aspirin's acetyl sits on oxygen as an ester; paracetamol's sits on nitrogen as an amide.
+    body:
+    - Both drugs carry an acetyl group, but bonded differently. Aspirin's is an ester, which a serine of cyclooxygenase (Ser530)
+      attacks, taking the acetyl and inhibiting the enzyme irreversibly. Paracetamol's acetyl is attached to nitrogen, forming
+      an amide.
+    - 'The routes proposed for paracetamol are different: as a reducing agent it lowers the peroxide tone that COX needs,
+      and a central pathway runs via the metabolite AM404. Its mechanism is still not fully understood.'
+    sources:
+    - citation: 'Lei J, Zhou Y, Xie D, Zhang Y. Mechanistic insights into a classic wonder drug: aspirin. J Am Chem Soc. 2015;137(1):70-73'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4309031/
+      licence: Free full text
+    - citation: ChEBI. Acetylsalicylic acid (CHEBI:15365). European Bioinformatics Institute
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15365
+      licence: CC BY 4.0
+    - citation: ChEBI. Paracetamol (CHEBI:46195). European Bioinformatics Institute
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:46195
+      licence: CC BY 4.0
+    - citation: Mallet C, Desmeules J, Pegahi R, Eschalier A. An updated review on the metabolite (AM404)-mediated central
+        mechanism of action of paracetamol (acetaminophen). J Pain Res. 2023;16:1081-1094
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC10066900/
+      licence: CC BY-NC 3.0

@@ -1,0 +1,169 @@
+# Glossary for tooltips. Licensed CC BY 4.0 with the rest of content/. Every definition cites a source.
+terms:
+- id: beta-lactam
+  term: β-lactam ring
+  definition: A cyclic amide (lactam) in which the amide bond sits in a four-membered ring that includes both the amide nitrogen
+    and the carbonyl carbon.
+  source:
+    citation: ChEBI. β-lactam (CHEBI:35627)
+    url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:35627
+    licence: CC BY 4.0
+  aliases:
+  - β-lactam
+  - β-lactams
+- id: transpeptidase
+  term: Transpeptidase
+  definition: The activity of penicillin-binding proteins that makes the final cross-links in the bacterial peptidoglycan
+    wall. β-Lactams block it by binding its active-site serine.
+  source:
+    citation: 'Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/
+    licence: Free full text
+  aliases:
+  - transpeptidases
+- id: hydrogen-bond-donor
+  term: Hydrogen-bond donor
+  definition: 'The D-H part of a hydrogen bond D-H···A: a hydrogen carried by an atom such as oxygen or nitrogen, as in a
+    serine O-H or a backbone amide N-H.'
+  source:
+    citation: Poznański J, Poznańska A, Shugar D. A Protein Data Bank survey reveals shortening of intermolecular hydrogen
+      bonds in ligand-protein complexes when a halogenated ligand is an H-bond donor. PLoS One 2014;9(6):e99984
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4059718/
+    licence: CC BY 4.0
+  aliases:
+  - hydrogen bond donor
+  - hydrogen-bond donors
+- id: hydrogen-bond-acceptor
+  term: Hydrogen-bond acceptor
+  definition: The atom A in a hydrogen bond D-H···A that the donor's hydrogen is drawn towards, usually an oxygen or nitrogen,
+    such as a carbonyl oxygen.
+  source:
+    citation: Poznański J, Poznańska A, Shugar D. A Protein Data Bank survey reveals shortening of intermolecular hydrogen
+      bonds in ligand-protein complexes when a halogenated ligand is an H-bond donor. PLoS One 2014;9(6):e99984
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4059718/
+    licence: CC BY 4.0
+  aliases:
+  - hydrogen bond acceptor
+  - hydrogen-bond acceptors
+- id: ionisable
+  term: Ionisable group
+  definition: A group, such as a carboxylic acid, whose charge depends on pH and its pKa. Most drugs carry at least one, and
+    charge affects how a molecule crosses membranes.
+  source:
+    citation: 'Manallack DT. The pKa distribution of drugs: application to drug discovery. Perspect Medicin Chem. 2007;1:25-38'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC2754920/
+    licence: CC BY 3.0
+  aliases:
+  - ionisable
+  - ionised
+- id: bioisostere
+  term: Bioisostere
+  definition: A group swapped in for another that keeps the biological effect but changes other properties. A tetrazole, for
+    example, can replace a carboxylic acid.
+  source:
+    citation: 'Yuan Y, Li M, Apostolopoulos V, et al. Tetrazoles: a multi-potent motif in drug design. Eur J Med Chem. 2024;279:116870'
+    url: https://vuir.vu.edu.au/49281/
+    licence: CC BY 4.0
+  aliases:
+  - bioisosteres
+  - bioisostere
+- id: functional-group
+  term: Functional group
+  definition: A defined set of linked atoms within a molecule, such as an ester, an amide or a carboxylic acid, treated as
+    one unit when describing the molecule.
+  source:
+    citation: ChEBI. Group (CHEBI:24433). European Bioinformatics Institute
+    url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:24433
+    licence: CC BY 4.0
+  aliases:
+  - functional groups
+- id: conformer
+  term: Conformer
+  definition: One of the 3D shapes a molecule can take by turning about its rotatable single bonds. Software builds sets of
+    low-energy conformers to explore these shapes.
+  source:
+    citation: 'O''Boyle NM, Vandermeersch T, Flynn CJ, Maguire AR, Hutchison GR. Confab: systematic generation of diverse
+      low-energy conformers. J Cheminform. 2011;3:8'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3073927/
+    licence: CC BY 2.0
+  aliases:
+  - conformers
+- id: atc-code
+  term: ATC code
+  definition: A WHO code that sorts a drug on five levels, from the organ system it acts on down to the single chemical substance.
+  source:
+    citation: 'WHO Collaborating Centre for Drug Statistics Methodology. ATC: structure and principles'
+    url: https://atcddd.fhi.no/atc/structure_and_principles/
+    licence: Free to read
+  aliases:
+  - ATC
+- id: cpk-colours
+  term: CPK colours
+  definition: 'A colour code for atoms in molecular models, named after Corey, Pauling and Koltun: for example carbon grey,
+    hydrogen white, oxygen red, nitrogen blue.'
+  source:
+    citation: RasTop 2.0 Help. Colour schemes
+    url: https://acces.ens-lyon.fr/biotic/rastop/help/colour.htm
+    licence: Free to read
+  aliases:
+  - CPK
+- id: shared-core
+  term: Shared core
+  definition: 'The maximum common substructure: the largest piece of structure found in both molecules being compared.'
+  source:
+    citation: 'Nagel O, Rodríguez-Guerra J, Volkamer A. T006: Maximum common substructure. TeachOpenCADD'
+    url: https://projects.volkamerlab.org/teachopencadd/talktorials/T006_compound_maximum_common_substructures.html
+    licence: CC BY 4.0
+  aliases:
+  - maximum common substructure
+- id: prodrug
+  term: Prodrug
+  definition: A compound that is inactive as given and must be chemically converted in the body, usually by metabolism, into
+    the active drug.
+  source:
+    citation: ChEBI. prodrug (CHEBI:50266)
+    url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:50266
+    licence: CC BY 4.0
+  aliases:
+  - prodrugs
+- id: lactone
+  term: Lactone
+  definition: 'A cyclic ester: a ring in which a carboxyl carbon is joined to an oxygen that is itself part of the ring.'
+  source:
+    citation: ChEBI. lactone (CHEBI:25000)
+    url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:25000
+    licence: CC BY 4.0
+  aliases:
+  - lactones
+- id: pharmacophore
+  term: Pharmacophore
+  definition: The set of spatial and electronic features a molecule needs to interact well with a particular biological target
+    and trigger or block its response.
+  source:
+    citation: 'Heider J, Kilian J, Garifulina A, Hering S, Langer T, Seidel T. apo2ph4: a versatile workflow for the generation
+      of receptor-based pharmacophore models for virtual screening. J Chem Inf Model 2023;63(1):101-110'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC9832483/
+    licence: CC BY 4.0
+  aliases:
+  - pharmacophores
+- id: stereocentre
+  term: Stereocentre
+  definition: An atom whose surroundings make a molecule chiral, most commonly a carbon carrying four different substituents.
+    Also called a chiral or stereogenic centre.
+  source:
+    citation: 'Nguyen LA, He H, Pham-Huy C. Chiral drugs: an overview. Int J Biomed Sci 2006;2(2):85-100'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3614593/
+    licence: CC BY 2.5
+  aliases:
+  - stereocentres
+  - stereogenic centre
+- id: enantiomer
+  term: Enantiomer
+  definition: One of the two mirror-image forms of a chiral molecule; the two forms cannot be superimposed on each other,
+    like a left and a right hand.
+  source:
+    citation: 'Nguyen LA, He H, Pham-Huy C. Chiral drugs: an overview. Int J Biomed Sci 2006;2(2):85-100'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3614593/
+    licence: CC BY 2.5
+  aliases:
+  - enantiomers

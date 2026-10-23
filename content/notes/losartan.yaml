@@ -1,0 +1,57 @@
+drug: losartan
+groups:
+  tetrazole:
+    caption: "The tetrazole stands in for a carboxylic acid: similar acidity, more stable."
+    body:
+      - "In losartan's design, an earlier lead carried a carboxylic acid that bound well but was metabolically unstable. A tetrazole was chosen instead because its acidity is close to that of a carboxylic acid, its flat four-nitrogen ring can interact with positive charges in the receptor, and it resists metabolism. This makes it a classic acidic bioisostere."
+    sources:
+      - citation: "Yuan Y, Li M, Apostolopoulos V, et al. Tetrazoles: a multi-potent motif in drug design. Eur J Med Chem. 2024;279:116870"
+        url: "https://vuir.vu.edu.au/49281/"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. Losartan (CHEBI:6541). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:6541"
+        licence: "CC BY 4.0"
+  imidazole:
+    caption: "A substituted imidazole: the part later sartans most often swapped out."
+    body:
+      - "The imidazole carries three substituents: a butyl chain, a chlorine and a hydroxymethyl group. A methylene bridge joins it to the biphenyl. When chemists designed later sartans, most changes to losartan's skeleton replaced this imidazole with other heteroaromatic or open-chain groups, while the biphenyl and its acidic group were kept."
+    sources:
+      - citation: "ChEBI. Losartan (CHEBI:6541). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:6541"
+        licence: "CC BY 4.0"
+      - citation: "Rapposelli S, Cuboni S, Digiacomo M, et al. Synthesis and AT1 affinity evaluation of benzamidophenyl analogs of known AT1 receptor ligands with similar aromatic skeleton. ARKIVOC. 2008;(ii):268-286"
+        url: "https://arkat-usa.org/get-file/23351"
+        licence: "Free full text"
+  biphenyl:
+    caption: "The biphenyl is the shared sartan scaffold that carries the acidic group."
+    body:
+      - "Losartan is classed as a biphenylyltetrazole: the tetrazole sits on one ring of a biphenyl, next to the bond joining the two rings. Sartans share this layout, a biphenyl bearing an acidic group and linked through a methylene to a heterocyclic or open-chain unit."
+    sources:
+      - citation: "ChEBI. Losartan (CHEBI:6541). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:6541"
+        licence: "CC BY 4.0"
+      - citation: "Rapposelli S, Cuboni S, Digiacomo M, et al. Synthesis and AT1 affinity evaluation of benzamidophenyl analogs of known AT1 receptor ligands with similar aromatic skeleton. ARKIVOC. 2008;(ii):268-286"
+        url: "https://arkat-usa.org/get-file/23351"
+        licence: "Free full text"
+  alcohol:
+    caption: "The hydroxymethyl group is oxidised to a carboxylic acid, giving EXP3174."
+    body:
+      - "The primary alcohol on the imidazole ring is a metabolic handle. Oxidation turns it into a carboxylic acid, producing losartan carboxylic acid (EXP3174). This metabolite is reported to be 10 to 40 times more potent than losartan and accounts for most of its activity."
+    sources:
+      - citation: "Rapposelli S, Cuboni S, Digiacomo M, et al. Synthesis and AT1 affinity evaluation of benzamidophenyl analogs of known AT1 receptor ligands with similar aromatic skeleton. ARKIVOC. 2008;(ii):268-286"
+        url: "https://arkat-usa.org/get-file/23351"
+        licence: "Free full text"
+      - citation: "ChEBI. Losartan carboxylic acid (CHEBI:74125). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:74125"
+        licence: "CC BY 4.0"
+  aryl_chloride:
+    caption: "The chlorine sits on the imidazole ring, so it is strictly a heteroaryl chloride."
+    body:
+      - "Losartan's only chlorine is attached at position 4 of the aromatic imidazole ring, not to a benzene ring. It is carried unchanged into the active metabolite, which ChEBI also classes as an organochlorine compound."
+    sources:
+      - citation: "ChEBI. Losartan (CHEBI:6541). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:6541"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. Losartan carboxylic acid (CHEBI:74125). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:74125"
+        licence: "CC BY 4.0"

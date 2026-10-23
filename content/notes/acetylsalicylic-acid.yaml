@@ -1,0 +1,25 @@
+drug: acetylsalicylic-acid
+groups:
+  acetyl_ester:
+    caption: "The acetyl ester is the warhead: it acetylates a serine in cyclooxygenase."
+    body:
+      - "Aspirin is salicylic acid with its phenol OH turned into an acetate ester. In the cyclooxygenase active site, the hydroxyl of Ser530 attacks the ester carbonyl, the acetyl group moves onto the enzyme and salicylic acid is released."
+      - "The acetylated serine blocks the substrate from binding properly, so the inhibition is covalent and irreversible."
+    sources:
+      - citation: "ChEBI. Acetylsalicylic acid (CHEBI:15365). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15365"
+        licence: "CC BY 4.0"
+      - citation: "Lei J, Zhou Y, Xie D, Zhang Y. Mechanistic insights into a classic wonder drug: aspirin. J Am Chem Soc. 2015;137(1):70-73"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4309031/"
+        licence: "Free full text"
+  carboxylic_acid:
+    caption: "The carboxylic acid makes aspirin a benzoic acid and helps drive acetyl transfer."
+    body:
+      - "Aspirin is a benzoic acid, and the carboxylic acid is its acidic group. Simulations suggest this carboxyl acts as the general base during acetyl transfer to Ser530. Arg120 of the enzyme matters for binding inhibitors with a carboxylic acid, though in these models it does not form a direct salt bridge with aspirin."
+    sources:
+      - citation: "ChEBI. Acetylsalicylic acid (CHEBI:15365). European Bioinformatics Institute"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:15365"
+        licence: "CC BY 4.0"
+      - citation: "Lei J, Zhou Y, Xie D, Zhang Y. Mechanistic insights into a classic wonder drug: aspirin. J Am Chem Soc. 2015;137(1):70-73"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4309031/"
+        licence: "Free full text"

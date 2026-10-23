@@ -166,3 +166,7 @@ Vite, React, TypeScript, static output (no server). 3Dmol.js. RDKit.js in a work
 - Every note shows its review status: "Sourced, not yet reviewed" by default, "Reviewed by [name, role]" only after a real review.
 - MVP: full notes for about 12 drugs; the rest show group names with "Note in preparation". Live lookups are a stretch goal.
 - Unsettled science (metamizole) is stated as unsettled, with a source. Paywall-only topics (mefenamic acid binding) get no note until an open source exists. Enantiomer pairs come after the first 12.
+
+## 12. Correction (Phase 3, 2026-10-23)
+
+Sections 4 and 10 above call OpenStax *Pharmacology for Nurses* CC BY 4.0 and say CC BY notes combine with OpenStax. That was wrong. Checked on the live pages: OpenStax *Pharmacology for Nurses*, *Microbiology* and *Organic Chemistry* are now licensed CC BY-NC-SA 4.0, and the pages add that the content may not be ingested into large language models or generative AI offerings without permission. Chemsisy therefore does not cite or rely on OpenStax in its notes or glossary. The CC BY 4.0 choice for Chemsisy's own notes is unaffected: the notes are written fresh and cite their sources.

@@ -1,0 +1,15 @@
+{
+  "PropertyTable": {
+    "Properties": [
+      {
+        "CID": 54454,
+        "MolecularFormula": "C25H38O5",
+        "MolecularWeight": "418.6",
+        "XLogP": 4.7,
+        "TPSA": 72.8,
+        "HBondDonorCount": 1,
+        "HBondAcceptorCount": 5
+      }
+    ]
+  }
+}

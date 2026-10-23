@@ -1,0 +1,65 @@
+drug: cefuroxime
+groups:
+  beta_lactam:
+    caption: "The same four-membered cyclic amide as in penicillins, aimed at the same enzymes."
+    body:
+      - "Cephalosporins carry the same β-lactam: an amide whose nitrogen and carbonyl carbon sit in a four-membered ring. It binds covalently to an active-site serine of penicillin-binding proteins, which cross-link the cell wall."
+      - "β-Lactamases attack the same bond. Their serine adds to the β-lactam carbonyl to form an acyl-enzyme, which water then hydrolyses, destroying the drug."
+    sources:
+      - citation: "ChEBI. β-lactam (CHEBI:35627)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:35627"
+        licence: "CC BY 4.0"
+      - citation: "Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/"
+        licence: "Free full text"
+      - citation: "Tooke CL, Hinchliffe P, Bragginton EC, et al. β-Lactamases and β-lactamase inhibitors in the 21st century. J Mol Biol 2019;431(18):3472-3500"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6723624/"
+        licence: "CC BY 4.0"
+  dihydrothiazine:
+    caption: "Six-membered sulfur ring fused to the β-lactam: the cephalosporin core."
+    body:
+      - "In cephalosporins the β-lactam is fused to a six-membered dihydrothiazine ring instead of the five-membered thiazolidine of penicillins."
+      - "Cephalosporins carry two variable side chains, R1 and R2. In cefuroxime they sit at position 7 (the furyl methoxyimino acetamido chain) and position 3 (a carbamoyloxymethyl group)."
+    sources:
+      - citation: "Tooke CL, Hinchliffe P, Bragginton EC, et al. β-Lactamases and β-lactamase inhibitors in the 21st century. J Mol Biol 2019;431(18):3472-3500"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6723624/"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. cephalosporin (CHEBI:23066)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:23066"
+        licence: "CC BY 4.0"
+      - citation: "ChEBI. cefuroxime (CHEBI:3515)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:3515"
+        licence: "CC BY 4.0"
+      - citation: "Chaudhry SB, Veve MP, Wagner JL. Cephalosporins: a focus on side chains and β-lactam cross-reactivity. Pharmacy 2019;7(3):103"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6789778/"
+        licence: "CC BY 4.0"
+  carboxylic_acid:
+    caption: "Carboxylic acid on the six-membered ring; a contact point for β-lactamases."
+    body:
+      - "Cefuroxime's systematic name ends in a 4-carboxylic acid: the carboxyl group sits directly on the six-membered ring of the cephalosporin core, much as penicillins carry one on their five-membered ring."
+      - "β-Lactamases make contact with it: in zinc-dependent enzymes, structural studies describe the substrate carboxylate interacting with an active-site zinc ion."
+    sources:
+      - citation: "ChEBI. cefuroxime (CHEBI:3515)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:3515"
+        licence: "CC BY 4.0"
+      - citation: "Tooke CL, Hinchliffe P, Bragginton EC, et al. β-Lactamases and β-lactamase inhibitors in the 21st century. J Mol Biol 2019;431(18):3472-3500"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6723624/"
+        licence: "CC BY 4.0"
+  amide:
+    caption: "Position 7 side chain with a methoxyimino group, built to resist β-lactamases."
+    body:
+      - "The side chain on position 7 is attached through an amide and carries a furan ring and a methoxyimino group. Changes at position 7 are what separate cephalosporins by spectrum."
+      - "Oxyimino side chains were introduced to counter β-lactamase resistance, and cefuroxime was described from the start as having increased β-lactamase stability."
+    sources:
+      - citation: "ChEBI. cefuroxime (CHEBI:3515)"
+        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:3515"
+        licence: "CC BY 4.0"
+      - citation: "Chaudhry SB, Veve MP, Wagner JL. Cephalosporins: a focus on side chains and β-lactam cross-reactivity. Pharmacy 2019;7(3):103"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6789778/"
+        licence: "CC BY 4.0"
+      - citation: "Tooke CL, Hinchliffe P, Bragginton EC, et al. β-Lactamases and β-lactamase inhibitors in the 21st century. J Mol Biol 2019;431(18):3472-3500"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6723624/"
+        licence: "CC BY 4.0"
+      - citation: "O'Callaghan CH, et al. Cefuroxime, a new cephalosporin antibiotic: activity in vitro. Antimicrob Agents Chemother 1976;9(3):511-519"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC429562/"
+        licence: "Free full text"
