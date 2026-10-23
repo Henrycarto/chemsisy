@@ -1,0 +1,23 @@
+name: Feature request
+description: Suggest something new, such as a drug for the starter set or a better way to show a molecule.
+title: "Idea: "
+labels: ["idea"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What would it help with
+      description: The situation in a lecture, a seminar or self-study where Chemsisy falls short today.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else
+      description: Examples, sketches, or tools that do this well.

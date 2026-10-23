@@ -1,0 +1,39 @@
+name: Bug report
+description: Something in the app does not work as it should.
+title: "Bug: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected and what you saw instead.
+    validations:
+      required: true
+  - type: input
+    id: page
+    attributes:
+      label: Page or drug
+      description: The address or the drug, for example /drug/amoxicillin.
+  - type: input
+    id: device
+    attributes:
+      label: Device and browser
+      description: For example "iPad, Safari 26" or "Windows, Chrome 141".
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Theme and connection
+      multiple: true
+      options:
+        - Light theme
+        - Dark theme
+        - Offline
+        - Keyboard only
+        - Screen reader
+  - type: textarea
+    id: more
+    attributes:
+      label: Screenshot or anything else

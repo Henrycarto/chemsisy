@@ -1,0 +1,64 @@
+name: Suggest or correct a chemistry note
+description: Point out a mistake in a note, or suggest a note for a group that has none. A source is required.
+title: "Note: [drug], [functional group]"
+labels: ["content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for improving the notes. Every claim in Chemsisy cites a source a reader can open, so a suggestion needs one too. Chemistry and mechanism only, please: no doses, indications or side effects.
+  - type: input
+    id: drug
+    attributes:
+      label: Drug
+      description: As it appears in Chemsisy, for example "Amoxicillin".
+    validations:
+      required: true
+  - type: input
+    id: group
+    attributes:
+      label: Functional group
+      description: For example "β-lactam ring". Leave empty for a comparison note and name the two drugs above.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of change
+      options:
+        - A claim is wrong
+        - A claim is unclear or misleading
+        - A source is wrong or no longer available
+        - Suggest a note for a group without one
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: What should change
+      description: Quote the sentence if you are correcting one, then say what it should say instead, in your own words.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: A link anyone can open (an open-access review, ChEBI, PubChem, an openly licensed textbook), and where in it the claim is supported. Paywalled sources cannot be used.
+      placeholder: "https://pmc.ncbi.nlm.nih.gov/articles/PMC... , section 'Mechanism of action'"
+    validations:
+      required: true
+  - type: input
+    id: role
+    attributes:
+      label: Your background (optional)
+      description: For example "pharmacy student", "lecturer in medicinal chemistry". It helps with review; it is never required.
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Before you submit
+      options:
+        - label: The source is openly accessible and supports the change.
+          required: true
+        - label: The suggestion is about chemistry or mechanism, not clinical use.
+          required: true

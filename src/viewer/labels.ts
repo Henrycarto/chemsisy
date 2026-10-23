@@ -106,7 +106,8 @@ export function placeLabels(g: Geometry, labels: LabelSpec[], f: Frame): Placeme
         let length = 0;
         for (let k = 1; k < path.length; k++) length += Math.hypot(path[k].x - path[k - 1].x, path[k].y - path[k - 1].y);
         const slope = c.side === "left" || c.side === "right" ? Math.abs(stub.y - end.y) * 0.6 : Math.abs(start.x - end.x) * 0.6;
-        const cost = length + slope + c.pen + crossings * 400;
+        // Crossing leaders are a last resort: a textbook figure never crosses them if it can avoid it.
+        const cost = length + slope + c.pen + crossings * 5000;
         if (!best || cost < best.cost) best = { ok: true, left: c.left, top: c.top, side: c.side, path, end, anchor: an.atom, cost, rect };
       }
     }

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import type { DrugGroup } from "../data/types.ts";
 import { NoteBody } from "./Note.tsx";
 import { Term } from "./Term.tsx";
@@ -10,6 +11,18 @@ interface Props {
 
 /** The functional groups as an accordion. One open group at a time; its note opens in place. */
 export function GroupList({ groups, openKey, onToggle }: Props) {
+  // When the open group changes, keep it in view inside the reading column. Only
+  // that column scrolls (on desktop it has its own scroll); the page never jumps.
+  const first = useRef(true);
+  useEffect(() => {
+    if (first.current) { first.current = false; return; }
+    if (!openKey) return;
+    const li = document.getElementById(`group-${openKey}`);
+    const column = li?.closest<HTMLElement>(".reading");
+    if (!li || !column || getComputedStyle(column).overflowY === "visible") return;
+    const top = li.getBoundingClientRect().top - column.getBoundingClientRect().top;
+    if (top < 0 || top > column.clientHeight * 0.6) column.scrollTop += top - 8;
+  }, [openKey]);
   return (
     <section aria-labelledby="groups-title" data-tour="groups">
       <h2 className="col-title" id="groups-title">
@@ -23,7 +36,7 @@ export function GroupList({ groups, openKey, onToggle }: Props) {
           const open = g.ruleId === openKey;
           const panel = `note-${g.ruleId}`;
           return (
-            <li key={g.ruleId} className={`group${open ? " is-open" : ""}`}>
+            <li key={g.ruleId} id={`group-${g.ruleId}`} className={`group${open ? " is-open" : ""}`}>
               <button
                 type="button"
                 className="group-btn"

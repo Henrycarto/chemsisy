@@ -142,6 +142,18 @@ describe("label placement", () => {
     expect(placed / total).toBeGreaterThan(0.95);
   });
 
+  it("leader lines never cross each other, across the whole starter set", () => {
+    for (const slug of slugs) {
+      const { g, d } = geometryFor(slug);
+      const specs = d.groups.map((x, k) => ({ atoms: x.atoms, w: 8 + 7 * x.name.length * 0.62, h: k === 0 ? 72 : 18, prefer: "columns" as const }));
+      const ok = placeLabels(g, specs, { W, H, bottomReserve: 52 }).filter((r) => r.ok);
+      ok.forEach((a, i) => ok.slice(i + 1).forEach((b) => {
+        for (let p = 1; p < a.path.length; p++) for (let q = 1; q < b.path.length; q++)
+          expect(segmentsCross(a.path[p - 1], a.path[p], b.path[q - 1], b.path[q]), `${slug}: leaders cross`).toBe(false);
+      }));
+    }
+  });
+
   it("detects a leader that would cross a bond", () => {
     const g: Geometry = {
       discs: [{ x: 100, y: 100, r: 8, atom: 0 }, { x: 200, y: 100, r: 8, atom: 1 }],

@@ -3,7 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "description": "Open-source molecule explorer for pharmacy and medical students.",
+  "author": "Henry Carto (https://henrycarto.com)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Henrycarto/chemsisy.git"
+  },
+  "bugs": "https://github.com/Henrycarto/chemsisy/issues",
   "type": "module",
   "engines": {
     "node": ">=22.6"

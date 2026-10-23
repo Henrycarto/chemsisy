@@ -328,6 +328,8 @@ table.diff td.no { color: var(--ink-2); }
   .drug-head h1 { font-size: 28px; line-height: 34px; }
   .home-intro h1 { font-size: 30px; line-height: 36px; }
   .pair { grid-template-columns: 1fr; }
+  /* The header already has the search field right above. */
+  .home-intro .search { display: none; }
   .keys { display: none; }
   .site-foot { padding: var(--s5) var(--s4); }
 }

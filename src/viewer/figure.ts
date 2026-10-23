@@ -45,6 +45,9 @@ const ANIMATION_MS = 240;
 const HALO_RIM = 3.5;
 
 const scheme = (map: Record<string, string>) => ({ prop: "elem", map });
+// 3Dmol fogs distant atoms towards the background colour. The canvas stays
+// transparent, but the colour must match the figure surface, or far atoms glow.
+const SURFACE: Record<Theme, string> = { light: "#ffffff", dark: "#1b1e21" };
 
 export class MoleculeFigure {
   readonly viewer: $3Dmol.GLViewer;
@@ -81,7 +84,7 @@ export class MoleculeFigure {
     this.overlay.appendChild(this.leaders);
     host.prepend(this.halo, this.canvasBox, this.overlay);
 
-    this.viewer = $3Dmol.createViewer(this.canvasBox, { backgroundColor: "white", backgroundAlpha: 0, antialias: true });
+    this.viewer = $3Dmol.createViewer(this.canvasBox, { backgroundColor: SURFACE[opts.theme], backgroundAlpha: 0, antialias: true });
     const model = this.viewer.addModel(sdf, "sdf");
     this.atoms = model.selectedAtoms({}) as unknown as Atom3[];
     if (opts.transform) {
@@ -114,6 +117,7 @@ export class MoleculeFigure {
 
   setTheme(theme: Theme) {
     this.opts.theme = theme;
+    this.viewer.setBackgroundColor(SURFACE[theme], 0);
     this.restyle();
     this.layout();
   }
