@@ -349,9 +349,9 @@ table.diff { width: 100%; border-collapse: collapse; font-size: var(--t-ui); }
 table.diff caption { text-align: left; font-weight: 600; padding-bottom: var(--s2); border-bottom: 1px solid var(--rule); }
 table.diff th { text-align: left; font-weight: 500; font-size: var(--t-sm); color: var(--ink-2); padding: var(--s2) var(--s3) var(--s2) 0; border-bottom: 1px solid var(--rule); }
 table.diff td { padding: var(--s2) var(--s3) var(--s2) 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
-table.diff td.y { color: var(--accent); font-weight: 500; }
-table.diff td.n { color: var(--ink-2); }
-table.diff td.only { color: var(--secondary); font-weight: 500; }
+table.diff td.yn { white-space: nowrap; }
+table.diff td.yn svg.i { width: 14px; height: 14px; vertical-align: -2px; margin-right: 6px; stroke-width: 2; }
+table.diff td.yn.n { color: var(--ink-2); }
 
 /* iPad portrait and smaller */
 @media (max-width: 1099px) {
@@ -391,3 +391,8 @@ table.diff td.only { color: var(--secondary); font-weight: 500; }
 .mini .btn { margin-top: var(--s3); display: inline-block; padding: 6px 10px; border-radius: var(--r-md); background: var(--ink); color: var(--surface); font-size: var(--t-sm); }
 .mini .lnk { display: block; margin-top: var(--s3); font-size: var(--t-sm); color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .mini .ttl { grid-column: 1 / -1; display: flex; justify-content: space-between; font-size: var(--t-xs); color: var(--ink-2); }
+
+/* Focus halo: drawn behind the transparent WebGL canvas, so it shows as a rim. */
+.halo { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.meta-link { color: var(--accent); text-underline-offset: 3px; }
+.meta-link svg.i { width: 13px; height: 13px; vertical-align: -1px; }

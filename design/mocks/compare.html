@@ -51,13 +51,13 @@
         <caption>Functional groups</caption>
         <thead><tr><th>Group</th><th>Penicillin V</th><th>Amoxicillin</th></tr></thead>
         <tbody>
-          <tr><td>β-lactam ring</td><td class="y">Yes</td><td class="y">Yes</td></tr>
-          <tr><td>Thiazolidine ring</td><td class="y">Yes</td><td class="y">Yes</td></tr>
-          <tr><td>Carboxylic acid</td><td class="y">Yes</td><td class="y">Yes</td></tr>
-          <tr><td>Amide link</td><td class="y">Yes</td><td class="y">Yes</td></tr>
-          <tr><td>Aryl ether</td><td class="only">Yes</td><td class="n">No</td></tr>
-          <tr><td>Primary amine</td><td class="n">No</td><td class="only">Yes</td></tr>
-          <tr><td>Phenol</td><td class="n">No</td><td class="only">Yes</td></tr>
+          <tr><td>β-lactam ring</td><td class="yn"><span data-i="check"></span>Yes</td><td class="yn"><span data-i="check"></span>Yes</td></tr>
+          <tr><td>Thiazolidine ring</td><td class="yn"><span data-i="check"></span>Yes</td><td class="yn"><span data-i="check"></span>Yes</td></tr>
+          <tr><td>Carboxylic acid</td><td class="yn"><span data-i="check"></span>Yes</td><td class="yn"><span data-i="check"></span>Yes</td></tr>
+          <tr><td>Amide link</td><td class="yn"><span data-i="check"></span>Yes</td><td class="yn"><span data-i="check"></span>Yes</td></tr>
+          <tr><td>Aryl ether</td><td class="yn"><span data-i="check"></span>Yes</td><td class="yn n"><span data-i="dash"></span>No</td></tr>
+          <tr><td>Primary amine</td><td class="yn n"><span data-i="dash"></span>No</td><td class="yn"><span data-i="check"></span>Yes</td></tr>
+          <tr><td>Phenol</td><td class="yn n"><span data-i="dash"></span>No</td><td class="yn"><span data-i="check"></span>Yes</td></tr>
         </tbody>
       </table>
       <div class="note">
@@ -76,13 +76,13 @@
 </main>
 
 <script type="module">
-import { figure, load, icon, theme, alignFrame, fitTogether } from "./mock.js";
+import { figure, load, icon, theme, alignFrame, fitTogether, ringAtoms } from "./mock.js";
 document.querySelectorAll("[data-i]").forEach((el) => {
   const n = el.dataset.i === "theme" ? (theme === "dark" ? "sun" : "moon") : el.dataset.i;
   el.insertAdjacentHTML("afterbegin", icon(n));
 });
 const wide = innerWidth >= 1100;
-document.documentElement.style.setProperty("--fig-h", wide ? "360px" : "340px");
+document.documentElement.style.setProperty("--fig-h", wide ? "380px" : "360px");
 await document.fonts.ready;
 const [sA, sB, groups] = await Promise.all([load("data/6869.sdf"), load("data/33613.sdf"), load("data/groups.json").then(JSON.parse)]);
 const gA = Object.fromEntries(groups["6869"].groups.map((x) => [x.id, x.atoms]));
@@ -90,14 +90,14 @@ const gB = Object.fromEntries(groups["33613"].groups.map((x) => [x.id, x.atoms])
 const coreA = groups["6869"].mcs, coreB = groups["33613"].mcs;
 const col = wide ? 112 : 92;
 const A = figure(document.getElementById("figA"), sA, {
-  emphasis: coreA, face: coreA, labelColumn: col, rows: !wide,
+  emphasis: coreA, faceRing: ringAtoms(sA, gA.beta_lactam), labelColumn: col, rows: !wide, noTools: true,
   labels: [
     { atoms: coreA, text: "Shared core", kind: "shared" },
     { atoms: gA.aryl_ether, text: "Aryl ether", kind: "diff" },
   ],
 });
 const B = figure(document.getElementById("figB"), sB, {
-  emphasis: coreB, frame: alignFrame(sB, coreB, A.atoms, coreA), labelColumn: col, rows: !wide,
+  emphasis: coreB, frame: alignFrame(sB, coreB, A.atoms, coreA), labelColumn: col, rows: !wide, noTools: true,
   labels: [
     { atoms: coreB, text: "Shared core", kind: "shared" },
     { atoms: gB.primary_amine, text: "Primary amine", kind: "diff" },

@@ -29,6 +29,7 @@
         <div><dt>ATC</dt><dd><span class="term">J01CA04</span></dd></div>
         <div><dt>Class</dt><dd>Aminopenicillin, a <span class="term">β-lactam</span> antibiotic</dd></div>
         <div><dt>Formula</dt><dd>C₁₆H₁₉N₃O₅S</dd></div>
+        <div><dd><a class="meta-link" href="https://medikamente.basg.gv.at/documents/17653__DOTC_FACH_INFO.pdf">Product information <span data-i="ext"></span></a></dd></div>
       </dl>
     </div>
     <figure style="margin:0">
@@ -86,7 +87,7 @@
 </main>
 
 <script type="module">
-import { figure, load, icon, theme } from "./mock.js";
+import { figure, load, icon, theme, ringAtoms } from "./mock.js";
 document.querySelectorAll("[data-i]").forEach((el) => {
   const n = el.dataset.i === "theme" ? (theme === "dark" ? "sun" : "moon") : el.dataset.i;
   el.insertAdjacentHTML("afterbegin", icon(n));
@@ -103,7 +104,7 @@ const g = Object.fromEntries(groups["33613"].groups.map((x) => [x.id, x.atoms]))
 figure(document.getElementById("fig"), sdf, {
   emphasis: g.beta_lactam,
   labelColumn: wide ? 180 : 150,
-  face: g.beta_lactam,
+  faceRing: ringAtoms(sdf, g.beta_lactam),
   labels: [
     { atoms: g.beta_lactam, text: "β-lactam ring", cap: "Strained four-membered amide; the part the bacterial enzyme attacks.", kind: "focus" },
     { atoms: g.thiazolidine, text: "Thiazolidine ring" },

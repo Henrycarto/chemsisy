@@ -21,6 +21,8 @@ export const ICON = {
   swap: '<path d="M7 7h12l-3-3M17 17H5l3 3"/>',
   ext: '<path d="M14 5h5v5"/><path d="M19 5l-8 8"/><path d="M17 14v5H5V7h5"/>',
   down: '<path d="m6 9 6 6 6-6"/>',
+  check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+  dash: '<path d="M7 12h10"/>',
 };
 export const icon = (n) => `<svg class="i" viewBox="0 0 24 24" aria-hidden="true">${ICON[n]}</svg>`;
 
@@ -83,29 +85,57 @@ function hornRotation(P, Q) {
   ];
 }
 
-const rot = (ax, ay) => {
-  const [ca, sa, cb, sb] = [Math.cos(ax), Math.sin(ax), Math.cos(ay), Math.sin(ay)];
-  const Rx = [[1, 0, 0], [0, ca, -sa], [0, sa, ca]], Ry = [[cb, 0, sb], [0, 1, 0], [-sb, 0, cb]];
-  return Rx.map((r) => [0, 1, 2].map((j) => r[0] * Ry[0][j] + r[1] * Ry[1][j] + r[2] * Ry[2][j]));
-};
-function faceRotation(heavy, group) {
-  const gp = group.map((a) => [a.x, a.y, a.z]), gc = centroid(gp);
-  const C = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-  for (const p of gp) for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) C[i][j] += (p[i] - gc[i]) * (p[j] - gc[j]);
-  const n = jacobi(C)[2].vec;
-  const hp = heavy.map((a) => [a.x, a.y, a.z]);
-  let best = { s: -1, R: rot(0, 0) };
-  for (let ax = -70; ax <= 70; ax += 5) for (let ay = -70; ay <= 70; ay += 5) {
-    const R = rot((ax * Math.PI) / 180, (ay * Math.PI) / 180);
-    const nz = Math.abs(apply(R, n)[2]);
-    const pts = hp.map((p) => apply(R, p));
-    const w = Math.max(...pts.map((p) => p.x)) - Math.min(...pts.map((p) => p.x));
-    const h = Math.max(...pts.map((p) => p.y)) - Math.min(...pts.map((p) => p.y));
-    const front = apply(R, gc)[2] >= 0 ? 0.15 : 0;
-    const s = 1.6 * nz + 0.5 * Math.min(w / (h * 1.4), 1) + front;
-    if (s > best.s) best = { s, R };
+
+// ---- orientation ------------------------------------------------------------
+const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+const norm = (a) => { const l = Math.hypot(...a); return a.map((v) => v / l); };
+function planeNormal(pts) {
+  const c = centroid(pts), C = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+  for (const p of pts) for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) C[i][j] += (p[i] - c[i]) * (p[j] - c[j]);
+  return { c, n: jacobi(C)[2].vec };
+}
+// Rotation whose third row is n: applying it sends n to +z (towards the reader).
+function toZ(n) {
+  const helper = Math.abs(n[0]) < 0.9 ? [1, 0, 0] : [0, 1, 0];
+  const x = norm(cross(helper, n)), y = cross(n, x);
+  return [x, y, n];
+}
+const spinZ = (t) => [[Math.cos(t), -Math.sin(t), 0], [Math.sin(t), Math.cos(t), 0], [0, 0, 1]];
+const mul = (A, B) => A.map((r) => [0, 1, 2].map((j) => r[0] * B[0][j] + r[1] * B[1][j] + r[2] * B[2][j]));
+
+// Turn a ring so its plane faces the reader, with the rest of the molecule behind it,
+// then spin it about the view axis so the molecule fills the figure's free area best.
+export function faceRing(points, ring, aspect) {
+  const rp = ring.map((i) => points[i]);
+  let { c, n } = planeNormal(rp);
+  const bulk = points.reduce((s, p) => s + dot([p[0] - c[0], p[1] - c[1], p[2] - c[2]], n), 0);
+  if (bulk > 0) n = n.map((v) => -v);
+  const R0 = toZ(n);
+  let best = null;
+  for (let deg = 0; deg < 360; deg += 3) {
+    const R = mul(spinZ((deg * Math.PI) / 180), R0);
+    const q = points.map((p) => apply(R, [p[0] - c[0], p[1] - c[1], p[2] - c[2]]));
+    const xs = q.map((p) => p[0]), ys = q.map((p) => p[1]);
+    const w = Math.max(...xs) - Math.min(...xs) + 2, h = Math.max(...ys) - Math.min(...ys) + 2;
+    const scale = Math.min(aspect / w, 1 / h);
+    if (!best || scale > best.scale + 1e-9) best = { scale, R };
   }
-  return best.R;
+  return { c, R: best.R };
+}
+
+// Quality numbers for the orientation test: how face-on the ring is, the closest
+// two ring atoms come on screen, and how many other atoms sit in front of the ring.
+export function ringReport(points, ring, skip = new Set()) {
+  const rp = ring.map((i) => points[i]);
+  const { c, n } = planeNormal(rp);
+  let minSep = Infinity;
+  for (let i = 0; i < rp.length; i++) for (let j = i + 1; j < rp.length; j++)
+    minSep = Math.min(minSep, Math.hypot(rp[i][0] - rp[j][0], rp[i][1] - rp[j][1]));
+  // An occluder is a non-ring atom drawn in front of a ring atom and overlapping it on screen.
+  const occluders = points.filter((p, i) => !ring.includes(i) && !skip.has(i) &&
+    rp.some((r) => p[2] > r[2] + 0.2 && Math.hypot(p[0] - r[0], p[1] - r[1]) < 0.7)).length;
+  return { facing: Math.abs(n[2]), minSeparation: minSep, occluders };
 }
 
 // ---- colours ---------------------------------------------------------------
@@ -113,144 +143,256 @@ const CPK = {
   light: { C: "#4d535a", H: "#e9ebed", O: "#e0301e", N: "#2f5be8", S: "#d4b000", F: "#3fbf3f", Cl: "#2fa82f" },
   dark: { C: "#aab0b6", H: "#d9dde1", O: "#ff5a48", N: "#6a8cff", S: "#f0d040", F: "#7be07b", Cl: "#5fd05f" },
 };
-const GHOST = {
-  light: { C: "#c9ced3", H: "#eef0f2", O: "#ecb3ab", N: "#b3c0ee", S: "#e8dca0" },
-  dark: { C: "#596067", H: "#6a7178", O: "#8a524b", N: "#525e8f", S: "#847944" },
+// Context atoms: same hues, pushed towards the background so the focus reads first.
+const FADE = {
+  light: { C: "#d9dde1", H: "#f1f2f4", O: "#f2cdc8", N: "#cfd7f3", S: "#efe6bf", F: "#cfeccf", Cl: "#cfe8cf" },
+  dark: { C: "#3d4349", H: "#4a5056", O: "#5a3a37", N: "#3a4363", S: "#575132", F: "#36503a", Cl: "#344d38" },
 };
 const scheme = (map) => ({ prop: "elem", map });
+const VDW = { H: 1.2, C: 1.7, N: 1.55, O: 1.52, S: 1.8, F: 1.47, Cl: 1.75 };
+const STYLE = { ctx: { stick: 0.1, sphere: 0.18 }, focus: { stick: 0.14, sphere: 0.23 } };
 
 // ---- figure ---------------------------------------------------------------
 export function figure(host, sdf, opts) {
   cssHost = host;
   const viewerEl = host.querySelector(".viewer");
   const overlay = host.querySelector(".overlay");
-  const v = $3Dmol.createViewer(viewerEl, { backgroundColor: css("--surface"), backgroundAlpha: 0, antialias: true });
+  let halo = host.querySelector(".halo");
+  if (!halo) {
+    halo = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    halo.setAttribute("class", "halo");
+    host.insertBefore(halo, viewerEl);
+  }
+  const colW = opts.labelColumn ?? 190;
+  const rows = !!opts.rows;
+  // The free area for the molecule: between the label columns (or rows) and above the tool row.
+  const roomFor = (W, H) => rows
+    ? { w: W - 32, h: H - 2 * 40, cx: W / 2, cy: H / 2 }
+    : opts.noTools
+      ? { w: W - 2 * (colW + 16), h: H - 32, cx: W / 2, cy: H / 2 }
+      : { w: W - 2 * (colW + 16), h: H - 96, cx: W / 2, cy: (H - 40) / 2 };
+  const room = roomFor(viewerEl.clientWidth, viewerEl.clientHeight);
+
+  const v = $3Dmol.createViewer(viewerEl, { backgroundColor: "white", backgroundAlpha: 0, antialias: true });
   const model = v.addModel(sdf, "sdf");
   const atoms = model.selectedAtoms({});
   const heavy = atoms.filter((a) => a.elem !== "H");
+  const setXYZ = (fn) => { for (const a of atoms) { const p = fn([a.x, a.y, a.z]); a.x = p[0]; a.y = p[1]; a.z = p[2]; } };
 
-  // Orientation: either principal axes, or a given frame (compare mode).
-  const frame = opts.frame || principalFrame(heavy.map((a) => [a.x, a.y, a.z]));
-  for (const a of atoms) {
-    const p = apply(frame.R, [a.x - frame.c[0], a.y - frame.c[1], a.z - frame.c[2]]);
-    const t = frame.t || [0, 0, 0];
-    a.x = p[0] + t[0]; a.y = p[1] + t[1]; a.z = p[2] + t[2];
-  }
-  // Turn the focused group towards the reader while keeping the molecule wide.
-  if (opts.face) {
-    const R = faceRotation(heavy, opts.face.map((i) => atoms[i]));
-    for (const a of atoms) { const p = apply(R, [a.x, a.y, a.z]); a.x = p[0]; a.y = p[1]; a.z = p[2]; }
+  if (opts.frame) {
+    const t = opts.frame.t || [0, 0, 0];
+    setXYZ((p) => apply(opts.frame.R, [p[0] - opts.frame.c[0], p[1] - opts.frame.c[1], p[2] - opts.frame.c[2]]).map((v, k) => v + t[k]));
+  } else if (opts.faceRing) {
+    const pts = atoms.map((a) => [a.x, a.y, a.z]);
+    const f = faceRing(pts, opts.faceRing, room.w / room.h);
+    setXYZ((p) => apply(f.R, [p[0] - f.c[0], p[1] - f.c[1], p[2] - f.c[2]]));
+
+  } else {
+    const f = principalFrame(heavy.map((a) => [a.x, a.y, a.z]));
+    setXYZ((p) => apply(f.R, [p[0] - f.c[0], p[1] - f.c[1], p[2] - f.c[2]]));
   }
 
   // Hydrogens on carbon are hidden; polar hydrogens stay because they matter for H-bonding.
-  const hidden = atoms.filter((a) => a.elem === "H" && a.bonds.some((b) => atoms[b].elem === "C")).map((a) => a.index);
-  const emphasis = opts.emphasis ? new Set(opts.emphasis) : null;
-  const polarHOf = (set) => atoms.filter((a) => a.elem === "H" && !hidden.includes(a.index) && a.bonds.some((b) => set.has(b))).map((a) => a.index);
-  const emph = emphasis ? new Set([...emphasis, ...polarHOf(emphasis)]) : null;
+  const hidden = new Set(atoms.filter((a) => a.elem === "H" && a.bonds.some((b) => atoms[b].elem === "C")).map((a) => a.index));
+  const shown = atoms.filter((a) => !hidden.has(a.index));
+  if (opts.faceRing) {
+    const rep = ringReport(atoms.map((a) => [a.x, a.y, a.z]), opts.faceRing, hidden);
+    console.log(`ring ${host.id} facing=${rep.facing.toFixed(4)} minSep=${rep.minSeparation.toFixed(2)}A occluders=${rep.occluders}`);
+  }
+  const focusSet = opts.emphasis ? new Set(opts.emphasis) : null;
+  if (focusSet) for (const a of shown) if (a.elem === "H" && a.bonds.some((b) => focusSet.has(b))) focusSet.add(a.index);
 
   const mode = opts.theme || theme;
-  const all = atoms.map((a) => a.index).filter((i) => !hidden.includes(i));
-  const ctx = emph ? all.filter((i) => !emph.has(i)) : all;
+  const ctx = shown.filter((a) => !focusSet || !focusSet.has(a.index)).map((a) => a.index);
   v.setStyle({}, {});
+  const ctxStyle = focusSet ? STYLE.ctx : STYLE.focus;
   v.setStyle({ index: ctx }, {
-    stick: { radius: 0.12, colorscheme: scheme(emph ? GHOST[mode] : CPK[mode]) },
-    sphere: { scale: 0.2, colorscheme: scheme(emph ? GHOST[mode] : CPK[mode]) },
+    stick: { radius: ctxStyle.stick, colorscheme: scheme(focusSet ? FADE[mode] : CPK[mode]) },
+    sphere: { scale: ctxStyle.sphere, colorscheme: scheme(focusSet ? FADE[mode] : CPK[mode]) },
   });
-  if (emph) {
-    v.setStyle({ index: [...emph] }, {
-      stick: { radius: 0.14, colorscheme: scheme(CPK[mode]) },
-      sphere: { scale: 0.23, colorscheme: scheme(CPK[mode]) },
-    });
-  }
-  v.setViewStyle({ style: "outline", color: css("--surface"), width: 0.04 });
-  v.zoomTo({ index: all });
+  if (focusSet) v.setStyle({ index: [...focusSet] }, {
+    stick: { radius: STYLE.focus.stick, colorscheme: scheme(CPK[mode]) },
+    sphere: { scale: STYLE.focus.sphere, colorscheme: scheme(CPK[mode]) },
+  });
+  v.zoomTo({ index: shown.map((a) => a.index) });
   v.render();
 
-  // Fit the molecule into the space between the two label columns.
-  const W = viewerEl.clientWidth, H = viewerEl.clientHeight, colW = opts.labelColumn ?? 190;
   // modelToScreen returns page coordinates; convert to the figure's own box.
-  const toLocal = (p) => {
-    const r = viewerEl.getBoundingClientRect();
+  const project = (x, y, z) => {
+    const p = v.modelToScreen({ x, y, z }), r = viewerEl.getBoundingClientRect();
     return { x: p.x - (r.left + scrollX), y: p.y - (r.top + scrollY) };
   };
-  const project = (x, y, z) => toLocal(v.modelToScreen({ x, y, z }));
-  const shown = atoms.filter((a) => !hidden.includes(a.index));
   const box = () => {
     const pts = shown.map((a) => project(a.x, a.y, a.z));
     const xs = pts.map((p) => p.x), ys = pts.map((p) => p.y);
     const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)];
-    return { w: x1 - x0 + 24, h: y1 - y0 + 24, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2 };
+    return { w: x1 - x0 + 24, h: y1 - y0 + 24, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2, y0, y1 };
   };
-  // Leave the label columns and the tool row free: the molecule never sits under text.
-  const rows = !!opts.rows;
-  const room = rows
-    ? { w: W - 32, h: H - 2 * 44, cx: W / 2, cy: H / 2 }
-    : { w: W - 2 * (colW + 16), h: H - 96, cx: W / 2, cy: (H - 40) / 2 };
   v.setZoomLimits(0, 1e4);
-  for (let k = 0; k < 4; k++) {
-    const b = box();
-    v.zoom(Math.min(room.w / b.w, room.h / b.h));
-    v.render();
-    // translate() pans in view units; calibrate it once per pass, then centre the box.
-    const b0 = box();
-    v.translate(10, 0); v.render();
-    const sx = (box().cx - b0.cx) / 10; v.translate(-10, 0);
-    v.translate(0, 10); v.render();
-    const sy = (box().cy - b0.cy) / 10; v.translate(0, -10); v.render();
-    const b1 = box();
-    if (sx && sy) { v.translate((room.cx - b1.cx) / sx, (room.cy - b1.cy) / sy); v.render(); }
-  }
+  const fitTo = (rm) => {
+    for (let k = 0; k < 4; k++) {
+      const b = box();
+      v.zoom(Math.min(rm.w / b.w, rm.h / b.h)); v.render();
+      const b0 = box();
+      v.translate(10, 0); v.render(); const sx = (box().cx - b0.cx) / 10; v.translate(-10, 0);
+      v.translate(0, 10); v.render(); const sy = (box().cy - b0.cy) / 10; v.translate(0, -10); v.render();
+      const b1 = box();
+      if (sx && sy) { v.translate((rm.cx - b1.cx) / sx, (rm.cy - b1.cy) / sy); v.render(); }
+    }
+  };
+  fitTo(room);
 
-  const layout = () => (rows ? drawLabelRows : drawLabels)(project, atoms, overlay, opts.labels || [], W, H);
+  // Screen geometry of the drawn molecule: atom discs and bond segments.
+  const geometry = () => {
+    const c = centroid(shown.map((a) => [a.x, a.y, a.z]));
+    const o = project(...c), ex = project(c[0] + 1, c[1], c[2]), ey = project(c[0], c[1] + 1, c[2]), ez = project(c[0], c[1], c[2] + 1);
+    const d2 = (p) => (p.x - o.x) ** 2 + (p.y - o.y) ** 2;
+    const ppa = Math.sqrt((d2(ex) + d2(ey) + d2(ez)) / 2);
+    const disc = {};
+    for (const a of shown) {
+      const st = focusSet && !focusSet.has(a.index) ? STYLE.ctx : STYLE.focus;
+      disc[a.index] = { ...project(a.x, a.y, a.z), r: (VDW[a.elem] || 1.6) * st.sphere * ppa, atom: a.index, focus: !!focusSet?.has(a.index) };
+    }
+    const bonds = [];
+    for (const a of shown) for (const b of a.bonds) if (b > a.index && disc[b]) {
+      const st = focusSet && !(focusSet.has(a.index) && focusSet.has(b)) ? STYLE.ctx : STYLE.focus;
+      bonds.push({ p: disc[a.index], q: disc[b], a: a.index, b, hw: st.stick * ppa });
+    }
+    return { disc, bonds, ppa };
+  };
+
+  const layout = () => {
+    const W = viewerEl.clientWidth, H = viewerEl.clientHeight, g = geometry();
+    drawHalo(halo, g, focusSet, W, H);
+    placeAndDraw(overlay, g, opts.labels || [], { W, H, rows, colW, noTools: !!opts.noTools });
+  };
   layout();
-  return { v, atoms, frame, layout, project, shown, room };
+  v.setViewChangeCallback(() => layout());
+  const roomNow = () => roomFor(viewerEl.clientWidth, viewerEl.clientHeight);
+  return { v, atoms, layout, project, shown, room, roomNow, host, fitTo, box };
 }
 
-function drawLabels(project, atoms, overlay, labels, W, H) {
+// The halo sits behind the transparent WebGL canvas, so only a thin rim shows around the focused atoms.
+function drawHalo(svg, g, focusSet, W, H) {
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  if (!focusSet) { svg.innerHTML = ""; return; }
+  const col = css("--accent"), rim = 3.5;
+  let s = "";
+  for (const b of g.bonds) if (focusSet.has(b.a) && focusSet.has(b.b))
+    s += `<line x1="${b.p.x}" y1="${b.p.y}" x2="${b.q.x}" y2="${b.q.y}" stroke="${col}" stroke-width="${2 * (b.hw + rim)}" stroke-linecap="round"/>`;
+  for (const d of Object.values(g.disc)) if (d.focus) s += `<circle cx="${d.x}" cy="${d.y}" r="${d.r + rim}" fill="${col}"/>`;
+  svg.innerHTML = s;
+}
+
+// ---- label placement: leaders never cross the molecule -----------------------
+const segDist = (p, a, b) => {
+  const dx = b.x - a.x, dy = b.y - a.y, l2 = dx * dx + dy * dy;
+  const t = l2 ? Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.y - a.y) * dy) / l2)) : 0;
+  return Math.hypot(p.x - a.x - t * dx, p.y - a.y - t * dy);
+};
+const segsCross = (a, b, c, d) => {
+  const o = (p, q, r) => Math.sign((q.x - p.x) * (r.y - p.y) - (q.y - p.y) * (r.x - p.x));
+  return o(a, b, c) !== o(a, b, d) && o(c, d, a) !== o(c, d, b);
+};
+const segSegDist = (a, b, c, d) => (segsCross(a, b, c, d) ? 0 : Math.min(segDist(a, c, d), segDist(b, c, d), segDist(c, a, b), segDist(d, a, b)));
+const rectHitsDisc = (r, d, m) => {
+  const x = Math.max(r.x0, Math.min(d.x, r.x1)), y = Math.max(r.y0, Math.min(d.y, r.y1));
+  return Math.hypot(d.x - x, d.y - y) < d.r + m;
+};
+const segHitsRect = (a, b, r) => {
+  if (Math.min(a.x, b.x) > r.x1 || Math.max(a.x, b.x) < r.x0 || Math.min(a.y, b.y) > r.y1 || Math.max(a.y, b.y) < r.y0) return false;
+  const c = [{ x: r.x0, y: r.y0 }, { x: r.x1, y: r.y0 }, { x: r.x1, y: r.y1 }, { x: r.x0, y: r.y1 }];
+  const inside = (p) => p.x > r.x0 && p.x < r.x1 && p.y > r.y0 && p.y < r.y1;
+  return inside(a) || inside(b) || [0, 1, 2, 3].some((i) => segsCross(a, b, c[i], c[(i + 1) % 4]));
+};
+
+export function placeLabels(g, labels, { W, H, rows, colW, sizes, noTools }) {
+  const pad = 14, bottom = H - (rows || noTools ? 12 : 52);
+  const discs = Object.values(g.disc);
+  // Molecule outline as obstacles, with a little clearance so leaders never graze an atom.
+  const clearDisc = 4, clearBond = 3;
+  const placed = [], results = [];
+  const order = labels.map((l, i) => ({ l, i })).sort((a, b) => (a.l.kind === "focus" || a.l.kind === "shared" ? -1 : 0) - (b.l.kind === "focus" || b.l.kind === "shared" ? -1 : 0));
+  for (const { l, i } of order) {
+    const { w, h } = sizes[i];
+    const anchors = l.atoms.map((ai) => g.disc[ai]).filter(Boolean);
+    const cands = [];
+    const colTops = []; for (let y = pad; y + h <= bottom; y += 4) colTops.push(y);
+    const rowLefts = []; for (let x = pad; x + w <= W - pad; x += 6) rowLefts.push(x);
+    for (const side of ["left", "right"]) for (const top of colTops) {
+      const left = side === "left" ? pad : W - pad - w;
+      const s = { x: side === "left" ? left + w + 6 : left - 6, y: top + 9 };
+      cands.push({ side, left, top, start: s, stub: { x: side === "left" ? s.x + 10 : s.x - 10, y: s.y }, pen: rows ? 120 : 0 });
+    }
+    for (const row of ["top", "bottom"]) for (const left of rowLefts) {
+      const top = row === "top" ? pad : bottom - h;
+      cands.push({ side: row, left, top, start: null, pen: rows ? 0 : 160 });
+    }
+    let best = null;
+    for (const c of cands) {
+      const rect = { x0: c.left - 4, y0: c.top - 4, x1: c.left + w + 4, y1: c.top + h + 4 };
+      if (discs.some((d) => rectHitsDisc(rect, d, 2))) continue;
+      if (g.bonds.some((b) => segHitsRect(b.p, b.q, rect))) continue;
+      if (placed.some((p) => !(rect.x1 + 4 < p.rect.x0 || rect.x0 - 4 > p.rect.x1 || rect.y1 + 4 < p.rect.y0 || rect.y0 - 4 > p.rect.y1))) continue;
+      for (const an of anchors) {
+        let start = c.start, stub = c.stub;
+        if (!start) {
+          const sx = Math.min(Math.max(an.x, c.left + 6), c.left + w - 6);
+          start = { x: sx, y: c.side === "top" ? c.top + h + 4 : c.top - 4 };
+          stub = start;
+        }
+        // End at the edge of the anchor atom, on the side facing the label.
+        const dx = stub.x - an.x, dy = stub.y - an.y, len = Math.hypot(dx, dy) || 1;
+        const end = { x: an.x + (dx / len) * (an.r + 2), y: an.y + (dy / len) * (an.r + 2) };
+        const segs = start === stub ? [[stub, end]] : [[start, stub], [stub, end]];
+        const bad = segs.some(([a, b]) =>
+          discs.some((d) => d.atom !== an.atom && segDist(d, a, b) < d.r + clearDisc) ||
+          g.bonds.some((bd) => bd.a !== an.atom && bd.b !== an.atom && segSegDist(a, b, bd.p, bd.q) < bd.hw + clearBond) ||
+          placed.some((p) => segHitsRect(a, b, p.rect)));
+        if (bad) continue;
+        const crossings = placed.reduce((n, p) => n + p.segs.reduce((m, [a2, b2]) => m + segs.reduce((k, [a, b]) => k + (segsCross(a, b, a2, b2) ? 1 : 0), 0), 0), 0);
+        const length = segs.reduce((s, [a, b]) => s + Math.hypot(b.x - a.x, b.y - a.y), 0);
+        const slope = c.start ? Math.abs(stub.y - end.y) * 0.6 : Math.abs(start.x - end.x) * 0.6;
+        const cost = length + slope + c.pen + crossings * 400;
+        if (!best || cost < best.cost) best = { cost, c, rect, segs, end, anchor: an };
+      }
+    }
+    if (best) {
+      placed.push({ rect: best.rect, segs: best.segs });
+      results[i] = { left: best.c.left, top: best.c.top, side: best.c.side, segs: best.segs, end: best.end, anchor: best.anchor, ok: true };
+    } else results[i] = { ok: false };
+  }
+  return results;
+}
+
+function placeAndDraw(overlay, g, labels, cfg) {
   overlay.innerHTML = "";
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   overlay.appendChild(svg);
-  const items = labels.map((l) => {
-    const pts = l.atoms.map((i) => [atoms[i].x, atoms[i].y, atoms[i].z]);
-    const c = centroid(pts);
-    const s = project(c[0], c[1], c[2]);
+  const els = labels.map((l) => {
     const el = document.createElement("div");
     el.className = `label ${l.kind || "muted"}`;
-    el.innerHTML = l.cap ? `${l.text}<span class="cap">${l.cap}</span>` : l.text;
+    el.innerHTML = l.cap && !cfg.rows ? `${l.text}<span class="cap">${l.cap}</span>` : l.text;
     overlay.appendChild(el);
-    const side = l.side || (s.x < W / 2 ? "left" : "right");
-    return { l, s, el, side };
+    return el;
   });
-  const pad = 16, gap = 12, bottomLimit = H - 56;
-  for (const side of ["left", "right"]) {
-    const col = items.filter((it) => it.side === side).sort((a, b) => a.s.y - b.s.y);
-    let y = pad;
-    for (const it of col) {
-      if (side === "right") it.el.classList.add("right");
-      const h = it.el.offsetHeight;
-      it.top = Math.max(y, it.s.y - 9);
-      y = it.top + h + gap;
-    }
-    const over = col.length ? col[col.length - 1].top + col[col.length - 1].el.offsetHeight - bottomLimit : 0;
-    if (over > 0) col.forEach((it) => { it.top -= over; });
-    for (const it of col) {
-      const w = it.el.offsetWidth;
-      const left = side === "left" ? pad : W - pad - w;
-      it.el.style.left = `${left}px`;
-      it.el.style.top = `${it.top}px`;
-      const sx = side === "left" ? left + w + 8 : left - 8;
-      const sy = it.top + 9;
-      const stub = side === "left" ? sx + 10 : sx - 10;
-      const colour = it.l.kind === "focus" || it.l.kind === "shared" ? css("--accent") : it.l.kind === "diff" ? css("--secondary") : css("--ink-2");
-      const wgt = it.l.kind === "focus" || it.l.kind === "shared" ? 1.5 : 1;
-      const dash = it.l.kind === "diff" ? ' stroke-dasharray="4 3"' : "";
-      svg.insertAdjacentHTML("beforeend",
-        `<path d="M${sx} ${sy} H${stub} L${it.s.x} ${it.s.y}" fill="none" stroke="${colour}" stroke-width="${wgt}"${dash} opacity="${it.l.kind === "muted" ? 0.75 : 1}"/>` +
-        (it.l.kind === "focus" || it.l.kind === "shared"
-          ? `<circle cx="${it.s.x}" cy="${it.s.y}" r="7" fill="none" stroke="${colour}" stroke-width="1.5"/><circle cx="${it.s.x}" cy="${it.s.y}" r="2" fill="${colour}"/>`
-          : `<circle cx="${it.s.x}" cy="${it.s.y}" r="2.5" fill="${colour}"/>`));
-    }
-  }
+  const sizes = els.map((el) => ({ w: el.offsetWidth, h: el.offsetHeight }));
+  const res = placeLabels(g, labels, { ...cfg, sizes });
+  overlay.dataset.unplaced = String(res.filter((r) => !r.ok).length);
+  console.log(`labels ${overlay.parentElement.id} placed=${res.filter((r) => r.ok).length}/${res.length}`);
+  res.forEach((r, i) => {
+    const l = labels[i], el = els[i];
+    if (!r.ok) { el.remove(); return; }
+    if (r.side === "right") el.classList.add("right");
+    el.style.left = `${r.left}px`; el.style.top = `${r.top}px`;
+    const strong = l.kind === "focus" || l.kind === "shared";
+    const colour = strong ? css("--accent") : l.kind === "diff" ? css("--secondary") : css("--ink-2");
+    const dash = l.kind === "diff" ? ' stroke-dasharray="4 3"' : "";
+    const d = r.segs.map(([a, b], k) => `${k ? "" : `M${a.x} ${a.y} `}L${b.x} ${b.y}`).join(" ");
+    svg.insertAdjacentHTML("beforeend",
+      `<path d="${d}" fill="none" stroke="${colour}" stroke-width="${strong ? 1.5 : 1}"${dash}/>` +
+      `<circle cx="${r.end.x}" cy="${r.end.y}" r="${strong ? 2.5 : 2}" fill="${colour}"/>`);
+  });
 }
 
 // Frame that superimposes molecule B's shared-core atoms onto A's (already placed) core.
@@ -263,43 +405,9 @@ export function alignFrame(sdfB, coreB, atomsA, coreA) {
   return { c: cP, R, t: cQ };
 }
 
-// Narrow figures: labels sit in a row above or below the molecule, leader lines drop to the group.
-function drawLabelRows(project, atoms, overlay, labels, W, H) {
-  overlay.innerHTML = "";
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  overlay.appendChild(svg);
-  const items = labels.map((l) => {
-    const c = centroid(l.atoms.map((i) => [atoms[i].x, atoms[i].y, atoms[i].z]));
-    const s = project(c[0], c[1], c[2]);
-    const el = document.createElement("div");
-    el.className = `label ${l.kind || "muted"}`;
-    el.textContent = l.text;
-    overlay.appendChild(el);
-    return { l, s, el, row: l.row || (s.y < H / 2 ? "top" : "bottom") };
-  });
-  for (const row of ["top", "bottom"]) {
-    const r = items.filter((it) => it.row === row).sort((a, b) => a.s.x - b.s.x);
-    let x = 12;
-    for (const it of r) {
-      const w = it.el.offsetWidth, h = it.el.offsetHeight;
-      const left = Math.min(Math.max(x, it.s.x - w / 2), W - 12 - w);
-      const top = row === "top" ? 12 : H - 12 - h;
-      it.el.style.left = `${left}px`; it.el.style.top = `${top}px`;
-      x = left + w + 16;
-      const ax = Math.min(Math.max(it.s.x, left + 6), left + w - 6), ay = row === "top" ? top + h + 4 : top - 4;
-      const colour = it.l.kind === "shared" || it.l.kind === "focus" ? css("--accent") : it.l.kind === "diff" ? css("--secondary") : css("--ink-2");
-      const dash = it.l.kind === "diff" ? ' stroke-dasharray="4 3"' : "";
-      const strong = it.l.kind === "shared" || it.l.kind === "focus";
-      svg.insertAdjacentHTML("beforeend",
-        `<path d="M${ax} ${ay} L${it.s.x} ${it.s.y}" fill="none" stroke="${colour}" stroke-width="${strong ? 1.5 : 1}"${dash}/>` +
-        (strong ? `<circle cx="${it.s.x}" cy="${it.s.y}" r="7" fill="none" stroke="${colour}" stroke-width="1.5"/>` : "") +
-        `<circle cx="${it.s.x}" cy="${it.s.y}" r="2.5" fill="${colour}"/>`);
-    }
-  }
-}
-
-// Compare mode: one view for both viewers, fitted to the union of both molecules.
-export function fitTogether(A, B) {
+// Compare mode: one view for both viewers, fitted to the union of both molecules,
+// then the figures shrink to the height the molecules actually need.
+export function fitTogether(A, B, minH = 240) {
   const box = () => {
     const pts = [...A.shown.map((a) => A.project(a.x, a.y, a.z)), ...B.shown.map((a) => B.project(a.x, a.y, a.z))];
     const xs = pts.map((p) => p.x), ys = pts.map((p) => p.y);
@@ -307,18 +415,33 @@ export function fitTogether(A, B) {
     return { w: x1 - x0 + 24, h: y1 - y0 + 24, cx: (x0 + x1) / 2, cy: (y0 + y1) / 2 };
   };
   const sync = () => { B.v.setView(A.v.getView()); A.v.render(); B.v.render(); };
-  const room = A.room;
-  sync();
-  for (let k = 0; k < 4; k++) {
-    const b = box();
-    A.v.zoom(Math.min(room.w / b.w, room.h / b.h)); sync();
-    const b0 = box();
-    A.v.translate(10, 0); sync(); const sx = (box().cx - b0.cx) / 10; A.v.translate(-10, 0);
-    A.v.translate(0, 10); sync(); const sy = (box().cy - b0.cy) / 10; A.v.translate(0, -10); sync();
-    const b1 = box();
-    if (sx && sy) { A.v.translate((room.cx - b1.cx) / sx, (room.cy - b1.cy) / sy); sync(); }
+  const run = (room) => {
+    sync();
+    for (let k = 0; k < 4; k++) {
+      const b = box();
+      A.v.zoom(Math.min(room.w / b.w, room.h / b.h)); sync();
+      const b0 = box();
+      A.v.translate(10, 0); sync(); const sx = (box().cx - b0.cx) / 10; A.v.translate(-10, 0);
+      A.v.translate(0, 10); sync(); const sy = (box().cy - b0.cy) / 10; A.v.translate(0, -10); sync();
+      const b1 = box();
+      if (sx && sy) { A.v.translate((room.cx - b1.cx) / sx, (room.cy - b1.cy) / sy); sync(); }
+    }
+  };
+  run(A.roomNow());
+  // Width usually limits elongated molecules: give the spare height back to the page.
+  const spare = A.roomNow().h - box().h;
+  if (spare > 24) {
+    const newH = Math.max(minH, Math.round(A.host.clientHeight - spare + 8));
+    for (const F of [A, B]) { F.host.style.height = `${newH}px`; F.v.resize(); }
+    run(A.roomNow());
   }
   A.layout(); B.layout();
+}
+
+// Ring members of a matched group: the atoms of the match that are not exocyclic oxygens.
+export function ringAtoms(sdf, idx) {
+  const lines = sdf.split(String.fromCharCode(10));
+  return idx.filter((i) => lines[4 + i].slice(31, 34).trim() !== "O");
 }
 
 export async function load(path) {
