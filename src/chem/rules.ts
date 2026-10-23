@@ -4,7 +4,9 @@
 // ("2-arylpropionic acid") replaces the generic one ("carboxylic acid").
 //
 // `ring` lists the positions, in pattern order, of the atoms that form the ring
-// the viewer turns face-on when the group is in focus.
+// the viewer turns face-on when the group is in focus. `anchor` lists the
+// positions of the atoms a label's leader line may point at, when only some of
+// the matched atoms carry the group's name (the nitrogen of an amine).
 
 export interface GroupRule {
   id: string;
@@ -12,6 +14,7 @@ export interface GroupRule {
   smarts: string;
   priority: number;
   ring?: number[];
+  anchor?: number[];
   term?: string;
 }
 
@@ -65,7 +68,7 @@ export const RULES: GroupRule[] = [
   { id: "amide", name: "Amide", smarts: "[#6][CX3;!R](=[OX1])[NX3;!$(N([CX3]=O)[CX3]=O);!$(N-S(=O)=O)]", priority: 15 },
   { id: "sulfoxide", name: "Sulfoxide", smarts: "[#6][SX3](=O)[#6]", priority: 50, term: "prodrug" },
   { id: "sulfonamide", name: "Sulfonamide", smarts: "[#6]S(=O)(=O)[NX3;!$(N[CX3](=O)[#7])]", priority: 30 },
-  { id: "primary_amine", name: "Primary amine", smarts: "[NX3;H2;!$(N[CX3]=[O,N,S]);!$(N-a)][CX4]", priority: 20, term: "ionisable" },
+  { id: "primary_amine", name: "Primary amine", smarts: "[NX3;H2;!$(N[CX3]=[O,N,S]);!$(N-a)][CX4]", priority: 20, anchor: [0], term: "ionisable" },
   { id: "secondary_amine", name: "Secondary amine", smarts: "[NX3;H1;!$(N[CX3]=[O,S,N]);!$(N-a);!$(N-S(=O)=O)]([CX4])[CX4]", priority: 20, term: "ionisable" },
   { id: "tertiary_amine", name: "Tertiary amine", smarts: "[NX3;H0;!$(N[CX3]=[O,S,N]);!$(N-a);!$(N-S(=O)=O);!$(N-[#7])]([CX4])([CX4])[CX4]", priority: 20, term: "ionisable" },
   { id: "phenol", name: "Phenol", smarts: "c[OX2H1]", priority: 20, term: "hydrogen-bond-donor" },
@@ -86,6 +89,7 @@ export interface Group {
   name: string;
   atoms: number[];
   ring: number[];
+  anchor?: number[];
   count: number;
 }
 
@@ -106,7 +110,8 @@ export function groupMatches(matches: Match[], rules: GroupRule[] = RULES): Grou
     if (!ms) continue;
     const atoms = [...new Set(ms.flatMap((m) => m.atoms))].sort((a, b) => a - b);
     const ring = rule.ring ? [...new Set(ms.flatMap((m) => rule.ring!.map((p) => m.atoms[p])))] : [];
-    out.push({ ruleId: rule.id, name: rule.name, atoms, ring, count: ms.length });
+    const anchor = rule.anchor ? [...new Set(ms.flatMap((m) => rule.anchor!.map((p) => m.atoms[p])))] : undefined;
+    out.push({ ruleId: rule.id, name: rule.name, atoms, ring, ...(anchor ? { anchor } : {}), count: ms.length });
   }
   return out;
 }

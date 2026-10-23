@@ -14,6 +14,7 @@ export interface FigureLabel {
   caption?: string;
   kind: LabelKind;
   atoms: number[];
+  anchor?: number[];
 }
 
 export interface FigureOptions {
@@ -401,7 +402,7 @@ export class MoleculeFigure {
     const g = this.geometry();
     this.placements = placeLabels(
       g,
-      order.map(({ l }, k) => ({ atoms: l.atoms, w: els[k].offsetWidth, h: els[k].offsetHeight, prefer: this.opts.layout })),
+      order.map(({ l }, k) => ({ atoms: l.atoms, anchor: l.anchor, w: els[k].offsetWidth, h: els[k].offsetHeight, prefer: this.opts.layout })),
       { W, H, bottomReserve: this.opts.toolRow ? 52 : 12 },
     );
     let svg = "";

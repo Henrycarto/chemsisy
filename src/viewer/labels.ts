@@ -12,7 +12,14 @@ export interface Disc extends Pt { r: number; atom: number }
 export interface Bond { p: Pt; q: Pt; a: number; b: number; hw: number }
 export interface Geometry { discs: Disc[]; bonds: Bond[] }
 
-export interface LabelSpec { atoms: number[]; w: number; h: number; prefer?: "columns" | "rows" }
+export interface LabelSpec {
+  atoms: number[];
+  /** The atoms the leader may end on; any of `atoms` when absent. */
+  anchor?: number[];
+  w: number;
+  h: number;
+  prefer?: "columns" | "rows";
+}
 export interface Placement {
   ok: boolean;
   left: number;
@@ -106,7 +113,7 @@ function placeInOrder(g: Geometry, labels: LabelSpec[], f: Frame, byAtom: Map<nu
 
   order.forEach((i) => {
     const l = labels[i];
-    const anchors = l.atoms.map((a) => byAtom.get(a)).filter((d): d is Disc => !!d);
+    const anchors = (l.anchor?.length ? l.anchor : l.atoms).map((a) => byAtom.get(a)).filter((d): d is Disc => !!d);
     const cands: { side: Placement["side"]; left: number; top: number; pen: number }[] = [];
     for (let top = pad; top + l.h <= bottom; top += 4) {
       cands.push({ side: "left", left: pad, top, pen: l.prefer === "rows" ? 120 : 0 });

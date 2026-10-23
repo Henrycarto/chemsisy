@@ -26,6 +26,8 @@ export interface DrugGroup {
   name: string;
   atoms: number[];
   ring: number[];
+  /** Atoms a label may point at; all of `atoms` when absent. */
+  anchor?: number[];
   count: number;
   term?: string;
   note?: Note;

@@ -10,3 +10,4 @@ playwright-report/
 Thumbs.db
 dev-dist/
 review/*.html
+.vercel

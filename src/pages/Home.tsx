@@ -22,7 +22,7 @@ export function Home() {
     loadDrug(FEATURED).then(setFeatured, () => setFeatured(null));
   }, []);
   const groups: ViewGroup[] = useMemo(
-    () => (featured?.groups ?? []).map((g) => ({ key: g.ruleId, name: g.name, caption: g.note?.caption, atoms: g.atoms, ring: g.ring })),
+    () => (featured?.groups ?? []).map((g) => ({ key: g.ruleId, name: g.name, caption: g.note?.caption, atoms: g.atoms, ring: g.ring, anchor: g.anchor })),
     [featured],
   );
 

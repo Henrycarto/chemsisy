@@ -121,7 +121,7 @@ describe("label placement", () => {
     let total = 0, placed = 0;
     for (const slug of slugs) {
       const { g, d } = geometryFor(slug);
-      const specs = d.groups.map((x, k) => ({ atoms: x.atoms, w: 8 + 7 * x.name.length * 0.62, h: k === 0 ? 72 : 18, prefer: "columns" as const }));
+      const specs = d.groups.map((x, k) => ({ atoms: x.atoms, anchor: x.anchor, w: 8 + 7 * x.name.length * 0.62, h: k === 0 ? 72 : 18, prefer: "columns" as const }));
       const res = placeLabels(g, specs, { W, H, bottomReserve: 52 });
       total += res.length;
       const ok = res.filter((r) => r.ok);
@@ -153,7 +153,7 @@ describe("label placement", () => {
       let total = 0, placed = 0;
       for (const slug of slugs) {
         const { g, d } = geometryFor(slug, undefined, fw, fh);
-        const specs = d.groups.map((x, k) => ({ atoms: x.atoms, w: 8 + 7 * x.name.length * 0.62, h: k === 0 && prefer === "columns" ? 72 : 18, prefer }));
+        const specs = d.groups.map((x, k) => ({ atoms: x.atoms, anchor: x.anchor, w: 8 + 7 * x.name.length * 0.62, h: k === 0 && prefer === "columns" ? 72 : 18, prefer }));
         const res = placeLabels(g, specs, { W: fw, H: fh, bottomReserve: 52 });
         const ok = res.filter((r) => r.ok);
         total += res.length; placed += ok.length;
@@ -163,6 +163,29 @@ describe("label placement", () => {
       // The group list always names every group; the figure leaves out a label
       // it cannot place cleanly. Narrow phone figures have less room (99 of 121).
       expect(placed / total).toBeGreaterThan(prefer === "rows" ? 0.8 : 0.95);
+    });
+  }
+
+  for (const [layout, fw, fh, prefer] of [["columns", 880, 560, "columns"], ["rows, phone", 340, 520, "rows"]] as const) {
+    it(`a primary amine label points at its nitrogen (${layout})`, () => {
+      let checked = 0;
+      for (const slug of slugs) {
+        const d = drug(slug);
+        const k = d.groups.findIndex((x) => x.ruleId === "primary_amine");
+        if (k < 0) continue;
+        // Every group in focus once, as the reader steps through them.
+        for (const focus of d.groups) {
+          const { g } = geometryFor(slug, focus.ruleId, fw, fh);
+          const order = [focus, ...d.groups.filter((x) => x !== focus)];
+          const specs = order.map((x, i) => ({ atoms: x.atoms, anchor: x.anchor, w: 8 + 7 * x.name.length * 0.62, h: i === 0 && prefer === "columns" ? 72 : 18, prefer }));
+          const res = placeLabels(g, specs, { W: fw, H: fh, bottomReserve: 52 });
+          const r = res[order.findIndex((x) => x.ruleId === "primary_amine")];
+          if (!r.ok) continue;
+          expect(parseSdf(d.sdf).atoms[r.anchor].el, `${slug}, ${focus.ruleId} in focus`).toBe("N");
+          checked++;
+        }
+      }
+      expect(checked).toBeGreaterThan(5);
     });
   }
 

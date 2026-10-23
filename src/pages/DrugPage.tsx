@@ -47,7 +47,7 @@ export function DrugPage({ slug }: { slug: string }) {
   }, [focus, drug]);
 
   const viewGroups: ViewGroup[] = useMemo(
-    () => (drug?.groups ?? []).map((g) => ({ key: g.ruleId, name: g.name, caption: g.note?.caption, atoms: g.atoms, ring: g.ring })),
+    () => (drug?.groups ?? []).map((g) => ({ key: g.ruleId, name: g.name, caption: g.note?.caption, atoms: g.atoms, ring: g.ring, anchor: g.anchor })),
     [drug],
   );
   const comparisons = (index?.comparisons ?? []).filter((c) => c.a === slug || c.b === slug);

@@ -9,6 +9,7 @@ export interface ViewGroup {
   caption?: string;
   atoms: number[];
   ring: number[];
+  anchor?: number[];
 }
 
 interface Props {
@@ -102,6 +103,7 @@ export function MoleculeView(p: Props) {
       caption: g.key === p.focusKey ? g.caption : undefined,
       kind: g.key === p.focusKey ? "focus" : "muted",
       atoms: g.atoms,
+      anchor: g.anchor,
     }));
     f.setLabels([...(p.extraLabels ?? []), ...labels]);
     // eslint-disable-next-line react-hooks/exhaustive-deps

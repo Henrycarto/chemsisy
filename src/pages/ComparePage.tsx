@@ -76,7 +76,7 @@ function Comparison({ a, b }: { a: string; b: string }) {
     const own = d.groups.filter((g) => !has(other, g.ruleId));
     const out: FigureLabel[] = [];
     if (core && mode === "shared") out.push({ key: "core", text: "Shared core", kind: "shared", atoms: core });
-    for (const g of own) out.push({ key: g.ruleId, text: g.name, kind: mode === "differences" ? "shared" : "diff", atoms: g.atoms });
+    for (const g of own) out.push({ key: g.ruleId, text: g.name, kind: mode === "differences" ? "shared" : "diff", atoms: g.atoms, anchor: g.anchor });
     return out;
   };
   const emphasisFor = (d: Drug, other: Drug, core: number[] | undefined) => {
