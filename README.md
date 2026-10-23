@@ -4,6 +4,8 @@
 
 *Say "KEM-sis-ee".* An open-source molecule explorer that shows pharmacy and medical students why each part of a drug molecule matters.
 
+**Open it: [chemsisy.vercel.app](https://chemsisy.vercel.app)**. Nothing to install, no account; it works offline after the first visit.
+
 > **For education. Not medical advice.** Chemsisy explains chemistry. It never gives indications, doses or side effects; every drug links to its official product information instead.
 
 ![Searching for the brand Ospamox, opening amoxicillin, turning its β-lactam ring and amine to the reader, then comparing it with penicillin V](docs/media/chemsisy.gif)
