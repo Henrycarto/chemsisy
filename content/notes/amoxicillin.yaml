@@ -1,86 +1,97 @@
 drug: amoxicillin
 groups:
   beta_lactam:
-    caption: "Four-membered cyclic amide; the part that binds and disables the cell-wall enzyme."
+    caption: Four-membered cyclic amide; the part that binds and disables the cell-wall enzyme.
     body:
-      - "The β-lactam is an amide held in a four-membered ring that contains both the nitrogen and the carbonyl carbon. It binds covalently to penicillin-binding proteins, the enzymes that make the final peptidoglycan cross-links."
-      - "The result is an inactive acyl-enzyme on an active-site serine. β-Lactamases hydrolyse the same ring, and the drug is inactivated."
+    - The β-lactam is an amide held in a four-membered ring that contains both the nitrogen and the carbonyl carbon. It binds covalently to penicillin-binding proteins, the enzymes that make the final peptidoglycan cross-links.
+    - Why the ring reacts so readily has been debated since early work, which pointed to the strain of the four-membered ring or to weakened amide resonance. In the fused core the ring nitrogen is pyramidal, which disturbs the resonance that normally stabilises an amide.
+    - The result is an inactive acyl-enzyme on an active-site serine. β-Lactamases hydrolyse the same ring, and the drug is inactivated.
     sources:
-      - citation: "ChEBI. β-lactam (CHEBI:35627)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:35627"
-        licence: "CC BY 4.0"
-      - citation: "Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247"
-        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/"
-        licence: "Free full text"
+    - citation: ChEBI. β-lactam (CHEBI:35627)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:35627
+      licence: CC BY 4.0
+    - citation: 'Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/
+      licence: Free full text
+    - citation: 'Konaklieva MI. Molecular targets of β-lactam-based antimicrobials: beyond the usual suspects. Antibiotics (Basel) 2014;3(2):128-142'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4790389/
+      licence: CC BY 3.0
   thiazolidine:
-    caption: "Five-membered sulfur ring fused to the β-lactam, completing the penam nucleus."
+    caption: Five-membered sulfur ring fused to the β-lactam, completing the penam nucleus.
     body:
-      - "The β-lactam is fused to a five-membered, sulfur-containing thiazolidine ring, the penam nucleus found in every penicillin."
-      - "Amoxicillin keeps this nucleus unchanged. What makes it different from other penicillins is only the side chain on position 6."
+    - The β-lactam is fused to a five-membered, sulfur-containing thiazolidine ring, the penam nucleus found in every penicillin.
+    - Amoxicillin keeps this nucleus unchanged. What makes it different from other penicillins is only the side chain on position 6.
     sources:
-      - citation: "Chaudhry SB, Veve MP, Wagner JL. Cephalosporins: a focus on side chains and β-lactam cross-reactivity. Pharmacy 2019;7(3):103"
-        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6789778/"
-        licence: "CC BY 4.0"
-      - citation: "ChEBI. amoxicillin (CHEBI:2676)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676"
-        licence: "CC BY 4.0"
-      - citation: "ChEBI. penicillin (CHEBI:17334)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334"
-        licence: "CC BY 4.0"
+    - citation: 'Chaudhry SB, Veve MP, Wagner JL. Cephalosporins: a focus on side chains and β-lactam cross-reactivity. Pharmacy 2019;7(3):103'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC6789778/
+      licence: CC BY 4.0
+    - citation: ChEBI. amoxicillin (CHEBI:2676)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676
+      licence: CC BY 4.0
+    - citation: ChEBI. penicillin (CHEBI:17334)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334
+      licence: CC BY 4.0
   carboxylic_acid:
-    caption: "Position 3 carboxyl shared by all penicillins; it can lose a proton to form an anion."
+    caption: Position 3 carboxyl shared by all penicillins; it can lose a proton to form an anion.
     body:
-      - "Every penicillin carries a carboxyl group at position 3 of the penam core. When it loses its proton the drug becomes a penicillinate anion."
-      - "β-Lactamases make use of it: in zinc-dependent enzymes, structural work describes the substrate carboxylate interacting with an active-site zinc ion."
+    - Every penicillin carries a carboxyl group at position 3 of the penam core. When it loses its proton the drug becomes a penicillinate anion.
+    - Amoxicillin is amphoteric, with measured pKa values of about 2.4, 7.4 and 9.6, and is a zwitterion at intermediate pH. ChEBI's conjugate base carries its negative charge on this carboxylate, so near neutral pH the carboxyl is mostly present as the anion.
+    - 'β-Lactamases make use of it: in zinc-dependent enzymes, structural work describes the substrate carboxylate interacting with an active-site zinc ion.'
     sources:
-      - citation: "ChEBI. penicillin (CHEBI:17334)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334"
-        licence: "CC BY 4.0"
-      - citation: "ChEBI. penicillinate anion (CHEBI:51356)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:51356"
-        licence: "CC BY 4.0"
-      - citation: "Tooke CL, Hinchliffe P, Bragginton EC, et al. β-Lactamases and β-lactamase inhibitors in the 21st century. J Mol Biol 2019;431(18):3472-3500"
-        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6723624/"
-        licence: "CC BY 4.0"
+    - citation: ChEBI. penicillin (CHEBI:17334)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334
+      licence: CC BY 4.0
+    - citation: ChEBI. penicillinate anion (CHEBI:51356)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:51356
+      licence: CC BY 4.0
+    - citation: Tooke CL, Hinchliffe P, Bragginton EC, et al. β-Lactamases and β-lactamase inhibitors in the 21st century. J Mol Biol 2019;431(18):3472-3500
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC6723624/
+      licence: CC BY 4.0
+    - citation: Derakhsheshpoor R, Homayoonfal M, Akbari A, Mehrnia MR. Amoxicillin separation from pharmaceutical wastewater by high permeability polysulfone nanofiltration membrane. J Environ Health Sci Eng 2013;11:9
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3776300/
+      licence: CC BY 2.0
+    - citation: ChEBI. amoxicillin(1−) (CHEBI:51256)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:51256
+      licence: CC BY 4.0
   amide:
-    caption: "Carboxamido link at position 6 that carries amoxicillin's side chain."
+    caption: Carboxamido link at position 6 that carries amoxicillin's side chain.
     body:
-      - "The side chain is joined to the penam nucleus through an amide at position 6. In amoxicillin the acyl part is a 2-amino-2-(4-hydroxyphenyl)acetyl group."
-      - "The penicillins differ from one another at exactly this point: the nucleus stays the same and the acyl group on the amide changes."
+    - The side chain is joined to the penam nucleus through an amide at position 6. In amoxicillin the acyl part is a 2-amino-2-(4-hydroxyphenyl)acetyl group.
+    - 'The penicillins differ from one another at exactly this point: the nucleus stays the same and the acyl group on the amide changes.'
     sources:
-      - citation: "ChEBI. amoxicillin (CHEBI:2676)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676"
-        licence: "CC BY 4.0"
-      - citation: "ChEBI. penicillin (CHEBI:17334)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334"
-        licence: "CC BY 4.0"
+    - citation: ChEBI. amoxicillin (CHEBI:2676)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676
+      licence: CC BY 4.0
+    - citation: ChEBI. penicillin (CHEBI:17334)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334
+      licence: CC BY 4.0
   primary_amine:
-    caption: "Side-chain amino group shared with ampicillin and absent from penicillin V."
+    caption: Side-chain amino group shared with ampicillin and absent from penicillin V.
     body:
-      - "Amoxicillin and ampicillin both carry an amino group on the carbon next to the side-chain amide. The two drugs brought improved activity against Gram-negative bacteria compared with earlier penicillins."
-      - "The sources used here record that gain without assigning a molecular mechanism to the amino group, so this note does not offer one."
+    - Amoxicillin and ampicillin both carry an amino group on the carbon next to the side-chain amide. The two drugs brought improved activity against Gram-negative bacteria compared with earlier penicillins.
+    - The sources used here record that gain without assigning a molecular mechanism to the amino group, so this note does not offer one.
     sources:
-      - citation: "ChEBI. amoxicillin (CHEBI:2676)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676"
-        licence: "CC BY 4.0"
-      - citation: "ChEBI. ampicillin (CHEBI:28971)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:28971"
-        licence: "CC BY 4.0"
-      - citation: "Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247"
-        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/"
-        licence: "Free full text"
+    - citation: ChEBI. amoxicillin (CHEBI:2676)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676
+      licence: CC BY 4.0
+    - citation: ChEBI. ampicillin (CHEBI:28971)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:28971
+      licence: CC BY 4.0
+    - citation: 'Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/
+      licence: Free full text
   phenol:
-    caption: "The para-hydroxyl that distinguishes amoxicillin from ampicillin."
+    caption: The para-hydroxyl that distinguishes amoxicillin from ampicillin.
     body:
-      - "Amoxicillin differs from ampicillin only by a hydroxyl group at the para position of the side-chain benzene ring, making it a 4-hydroxyphenyl group."
-      - "In an early crossover study amoxicillin reached 2.1 to 2.9 times the absorption measured for ampicillin. That study does not explain why, so the role of the hydroxyl itself is left open here."
+    - Amoxicillin differs from ampicillin only by a hydroxyl group at the para position of the side-chain benzene ring, making it a 4-hydroxyphenyl group.
+    - In an early crossover study amoxicillin reached 2.1 to 2.9 times the absorption measured for ampicillin. That study does not explain why, so the role of the hydroxyl itself is left open here.
     sources:
-      - citation: "ChEBI. amoxicillin (CHEBI:2676)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676"
-        licence: "CC BY 4.0"
-      - citation: "ChEBI. ampicillin (CHEBI:28971)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:28971"
-        licence: "CC BY 4.0"
-      - citation: "Verbist L. Triple crossover study on absorption and excretion of ampicillin, pivampicillin, and amoxycillin. Antimicrob Agents Chemother 1974;6(5):588-593"
-        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC444697/"
-        licence: "Free full text"
+    - citation: ChEBI. amoxicillin (CHEBI:2676)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:2676
+      licence: CC BY 4.0
+    - citation: ChEBI. ampicillin (CHEBI:28971)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:28971
+      licence: CC BY 4.0
+    - citation: Verbist L. Triple crossover study on absorption and excretion of ampicillin, pivampicillin, and amoxycillin. Antimicrob Agents Chemother 1974;6(5):588-593
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC444697/
+      licence: Free full text

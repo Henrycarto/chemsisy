@@ -1,68 +1,72 @@
 drug: phenoxymethylpenicillin
 groups:
   beta_lactam:
-    caption: "Four-membered cyclic amide that locks onto the enzymes building the cell wall."
+    caption: Four-membered cyclic amide that locks onto the enzymes building the cell wall.
     body:
-      - "A β-lactam is an amide whose nitrogen and carbonyl carbon both sit in a four-membered ring. Penicillins use it to bind covalently to penicillin-binding proteins, enzymes that cross-link peptidoglycan at the last stage of cell-wall assembly."
-      - "An active-site serine ends up attached to the opened ring as an inactive acyl-enzyme. β-Lactamases defend bacteria by hydrolysing this ring, which inactivates the drug."
+    - A β-lactam is an amide whose nitrogen and carbonyl carbon both sit in a four-membered ring. Penicillins use it to bind covalently to penicillin-binding proteins, enzymes that cross-link peptidoglycan at the last stage of cell-wall assembly.
+    - Why the ring reacts so readily has been debated since early work, which pointed to the strain of the four-membered ring or to weakened amide resonance. In the fused core the ring nitrogen is pyramidal, which disturbs the resonance that normally stabilises an amide.
+    - An active-site serine ends up attached to the opened ring as an inactive acyl-enzyme. β-Lactamases defend bacteria by hydrolysing this ring, which inactivates the drug.
     sources:
-      - citation: "ChEBI. β-lactam (CHEBI:35627)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:35627"
-        licence: "CC BY 4.0"
-      - citation: "Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247"
-        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/"
-        licence: "Free full text"
+    - citation: ChEBI. β-lactam (CHEBI:35627)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:35627
+      licence: CC BY 4.0
+    - citation: 'Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/
+      licence: Free full text
+    - citation: 'Konaklieva MI. Molecular targets of β-lactam-based antimicrobials: beyond the usual suspects. Antibiotics (Basel) 2014;3(2):128-142'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4790389/
+      licence: CC BY 3.0
   thiazolidine:
-    caption: "Five-membered sulfur ring fused to the β-lactam: the penam core every penicillin shares."
+    caption: 'Five-membered sulfur ring fused to the β-lactam: the penam core every penicillin shares.'
     body:
-      - "In penicillins the β-lactam is fused to a five-membered thiazolidine ring, giving the bicyclic penam nucleus. Every penicillin carries two methyl groups at position 2 and a carboxylate at position 3 of this core."
-      - "What tells one penicillin from another is the group attached at position 6."
+    - In penicillins the β-lactam is fused to a five-membered thiazolidine ring, giving the bicyclic penam nucleus. Every penicillin carries two methyl groups at position 2 and a carboxylate at position 3 of this core.
+    - What tells one penicillin from another is the group attached at position 6.
     sources:
-      - citation: "Tooke CL, Hinchliffe P, Bragginton EC, et al. β-Lactamases and β-lactamase inhibitors in the 21st century. J Mol Biol 2019;431(18):3472-3500"
-        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6723624/"
-        licence: "CC BY 4.0"
-      - citation: "ChEBI. penicillin (CHEBI:17334)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334"
-        licence: "CC BY 4.0"
+    - citation: Tooke CL, Hinchliffe P, Bragginton EC, et al. β-Lactamases and β-lactamase inhibitors in the 21st century. J Mol Biol 2019;431(18):3472-3500
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC6723624/
+      licence: CC BY 4.0
+    - citation: ChEBI. penicillin (CHEBI:17334)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334
+      licence: CC BY 4.0
   carboxylic_acid:
-    caption: "Position 3 carboxyl of the penicillin core; losing its proton gives the anion."
+    caption: Position 3 carboxyl of the penicillin core; losing its proton gives the anion.
     body:
-      - "The carboxyl group at position 3 is part of the definition of a penicillin. Loss of its proton gives a penicillinate anion, the negatively charged form."
-      - "Enzymes that attack penicillins use this group as a handle: in zinc-dependent β-lactamases, structural studies describe the substrate carboxylate interacting with an active-site zinc ion."
+    - The carboxyl group at position 3 is part of the definition of a penicillin. Loss of its proton gives a penicillinate anion, the negatively charged form.
+    - 'Enzymes that attack penicillins use this group as a handle: in zinc-dependent β-lactamases, structural studies describe the substrate carboxylate interacting with an active-site zinc ion.'
     sources:
-      - citation: "ChEBI. penicillin (CHEBI:17334)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334"
-        licence: "CC BY 4.0"
-      - citation: "ChEBI. penicillinate anion (CHEBI:51356)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:51356"
-        licence: "CC BY 4.0"
-      - citation: "Tooke CL, Hinchliffe P, Bragginton EC, et al. β-Lactamases and β-lactamase inhibitors in the 21st century. J Mol Biol 2019;431(18):3472-3500"
-        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6723624/"
-        licence: "CC BY 4.0"
+    - citation: ChEBI. penicillin (CHEBI:17334)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334
+      licence: CC BY 4.0
+    - citation: ChEBI. penicillinate anion (CHEBI:51356)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:51356
+      licence: CC BY 4.0
+    - citation: Tooke CL, Hinchliffe P, Bragginton EC, et al. β-Lactamases and β-lactamase inhibitors in the 21st century. J Mol Biol 2019;431(18):3472-3500
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC6723624/
+      licence: CC BY 4.0
   amide:
-    caption: "Carboxamido link at position 6 that carries the phenoxyacetyl side chain."
+    caption: Carboxamido link at position 6 that carries the phenoxyacetyl side chain.
     body:
-      - "The side chain joins the penam nucleus through an amide at position 6. In penicillin V the acyl part is a phenoxyacetyl group; in other penicillins a different group sits here."
-      - "The closely related penicillin G has been described as structurally similar to the terminal D-Ala-D-Ala of the growing peptidoglycan, the part the target enzymes work on."
+    - The side chain joins the penam nucleus through an amide at position 6. In penicillin V the acyl part is a phenoxyacetyl group; in other penicillins a different group sits here.
+    - The closely related penicillin G has been described as structurally similar to the terminal D-Ala-D-Ala of the growing peptidoglycan, the part the target enzymes work on.
     sources:
-      - citation: "ChEBI. phenoxymethylpenicillin (CHEBI:27446)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:27446"
-        licence: "CC BY 4.0"
-      - citation: "ChEBI. penicillin (CHEBI:17334)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334"
-        licence: "CC BY 4.0"
-      - citation: "Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247"
-        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/"
-        licence: "Free full text"
+    - citation: ChEBI. phenoxymethylpenicillin (CHEBI:27446)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:27446
+      licence: CC BY 4.0
+    - citation: ChEBI. penicillin (CHEBI:17334)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:17334
+      licence: CC BY 4.0
+    - citation: 'Bush K, Bradford PA. β-Lactams and β-lactamase inhibitors: an overview. Cold Spring Harb Perspect Med 2016;6(8):a025247'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4968164/
+      licence: Free full text
   aryl_ether:
-    caption: "The phenoxy oxygen that makes this penicillin V rather than penicillin G."
+    caption: The phenoxy oxygen that makes this penicillin V rather than penicillin G.
     body:
-      - "The phenyl ring is joined to the side chain through an ether oxygen, giving the phenoxyacetyl group that defines penicillin V. Penicillin V is described as relatively stable to gastric acid."
-      - "The sources used here record that acid tolerance but do not explain which structural feature is responsible, so this note does not assign it to the ether."
+    - The phenyl ring is joined to the side chain through an ether oxygen, giving the phenoxyacetyl group that defines penicillin V. Penicillin V is described as relatively stable to gastric acid.
+    - The sources used here record that acid tolerance but do not explain which structural feature is responsible, so this note does not assign it to the ether.
     sources:
-      - citation: "ChEBI. phenoxymethylpenicillin (CHEBI:27446)"
-        url: "https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:27446"
-        licence: "CC BY 4.0"
-      - citation: "Rawson TM, Wilson RC, Moore LSP, et al. Exploring the pharmacokinetics of phenoxymethylpenicillin (penicillin-V) in adults: a healthy volunteer study. Open Forum Infect Dis 2021;8(12):ofab573"
-        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8684501/"
-        licence: "CC BY-NC-ND 4.0"
+    - citation: ChEBI. phenoxymethylpenicillin (CHEBI:27446)
+      url: https://www.ebi.ac.uk/chebi/searchId.do?chebiId=CHEBI:27446
+      licence: CC BY 4.0
+    - citation: 'Rawson TM, Wilson RC, Moore LSP, et al. Exploring the pharmacokinetics of phenoxymethylpenicillin (penicillin-V) in adults: a healthy volunteer study. Open Forum Infect Dis 2021;8(12):ofab573'
+      url: https://pmc.ncbi.nlm.nih.gov/articles/PMC8684501/
+      licence: CC BY-NC-ND 4.0
