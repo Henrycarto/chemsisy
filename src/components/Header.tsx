@@ -13,7 +13,14 @@ export function Header() {
   return (
     <header className="bar">
       <a className="skip-link" href="#main">Skip to content</a>
-      <Link className="wordmark" href="/">Chemsisy</Link>
+      <Link className="wordmark" href="/">
+        {/* The Chemsisy mark, small-size drawing: a ring with one atom picked out. */}
+        <svg className="brand-mark" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <path d="M11.50 4.30 L19.30 9.97 L16.32 19.13 L6.68 19.13 L3.70 9.97Z" />
+          <circle cx="19.30" cy="9.97" r="2.8" />
+        </svg>
+        Chemsisy
+      </Link>
       <div data-tour="search" style={{ display: "contents" }}>
         <Search id="search" />
       </div>

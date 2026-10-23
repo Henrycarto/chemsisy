@@ -36,9 +36,13 @@ svg.i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-widt
   background: var(--surface);
 }
 .wordmark {
+  display: inline-flex; align-items: center; gap: var(--s2);
   font-family: var(--serif); font-size: 20px; font-weight: 600; letter-spacing: -0.01em;
   color: var(--ink); text-decoration: none; margin-right: var(--s2); white-space: nowrap;
 }
+.brand-mark { flex: none; }
+.brand-mark path { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+.brand-mark circle { fill: var(--accent); }
 .nav { margin-left: auto; display: flex; align-items: center; gap: var(--s1); }
 .nav a {
   color: var(--ink); text-decoration: none; padding: 0 10px; height: 56px;
