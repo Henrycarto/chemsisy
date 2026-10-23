@@ -5,7 +5,7 @@
 // its top or bottom. Its leader line starts at the label, may take a short
 // horizontal stub, and ends at the edge of one atom of its group. A candidate
 // is rejected if the label box or the leader touches any other atom or bond,
-// or another label. Among the rest, the shortest, flattest leader wins.
+// or another label, or comes near another leader. Among the rest, the shortest, flattest leader wins.
 
 export interface Pt { x: number; y: number }
 export interface Disc extends Pt { r: number; atom: number }
@@ -26,6 +26,8 @@ export interface Frame { W: number; H: number; bottomReserve: number }
 
 const CLEAR_DISC = 4;
 const CLEAR_BOND = 3;
+// Two leaders closer than this read as crossing, even if they only touch.
+export const LEADER_GAP = 8;
 
 const segDist = (p: Pt, a: Pt, b: Pt) => {
   const dx = b.x - a.x, dy = b.y - a.y, l2 = dx * dx + dy * dy;
@@ -50,6 +52,13 @@ const segHitsRect = (a: Pt, b: Pt, r: Rect) => {
   return inside(a) || inside(b) || [0, 1, 2, 3].some((i) => segmentsCross(a, b, c[i], c[(i + 1) % 4]));
 };
 
+/** Do two leader paths cross or come within LEADER_GAP of each other? */
+export function leadersClash(a: Pt[], b: Pt[]): boolean {
+  for (let i = 1; i < a.length; i++) for (let j = 1; j < b.length; j++)
+    if (segSegDist(a[i - 1], a[i], b[j - 1], b[j]) < LEADER_GAP) return true;
+  return false;
+}
+
 /** Does any part of the leader path touch the molecule, other than its own anchor atom? */
 export function leaderHitsMolecule(path: Pt[], anchor: number, g: Geometry): boolean {
   for (let k = 0; k + 1 < path.length; k++) {
@@ -60,14 +69,43 @@ export function leaderHitsMolecule(path: Pt[], anchor: number, g: Geometry): boo
   return false;
 }
 
+/**
+ * Places labels in turn, the first (the focused group) always first. Placement
+ * is greedy, so an early label can block a later one; a few orders are tried
+ * until one places them all; otherwise the one that places the most wins.
+ */
 export function placeLabels(g: Geometry, labels: LabelSpec[], f: Frame): Placement[] {
+  const byAtom = new Map(g.discs.map((d) => [d.atom, d]));
+  const centre = (l: LabelSpec) => {
+    const ds = l.atoms.map((a) => byAtom.get(a)).filter((d): d is Disc => !!d);
+    return ds.length ? { x: ds.reduce((s, d) => s + d.x, 0) / ds.length, y: ds.reduce((s, d) => s + d.y, 0) / ds.length } : { x: 0, y: 0 };
+  };
+  const rest = labels.map((_, i) => i).slice(1);
+  const orders = [
+    rest,
+    [...rest].reverse(),
+    [...rest].sort((a, b) => centre(labels[a]).x - centre(labels[b]).x),
+    [...rest].sort((a, b) => centre(labels[a]).y - centre(labels[b]).y),
+  ].map((o) => (labels.length ? [0, ...o] : []));
+  let best: { out: Placement[]; n: number; cost: number } | null = null;
+  for (const order of orders) {
+    const r = placeInOrder(g, labels, f, byAtom, order);
+    if (!best || r.n > best.n || (r.n === best.n && r.cost < best.cost - 1e-6)) best = r;
+    // Usually the first order places every label; only then is the rest skipped.
+    if (best.n === labels.length) break;
+  }
+  return best ? best.out : [];
+}
+
+function placeInOrder(g: Geometry, labels: LabelSpec[], f: Frame, byAtom: Map<number, Disc>, order: number[]) {
   const pad = 14;
   const bottom = f.H - f.bottomReserve;
-  const byAtom = new Map(g.discs.map((d) => [d.atom, d]));
   const placed: { rect: Rect; path: Pt[] }[] = [];
   const out: Placement[] = new Array(labels.length);
+  let n = 0, total = 0;
 
-  labels.forEach((l, i) => {
+  order.forEach((i) => {
+    const l = labels[i];
     const anchors = l.atoms.map((a) => byAtom.get(a)).filter((d): d is Disc => !!d);
     const cands: { side: Placement["side"]; left: number; top: number; pen: number }[] = [];
     for (let top = pad; top + l.h <= bottom; top += 4) {
@@ -98,25 +136,29 @@ export function placeLabels(g: Geometry, labels: LabelSpec[], f: Frame): Placeme
         const dx = stub.x - an.x, dy = stub.y - an.y, len = Math.hypot(dx, dy) || 1;
         const end = { x: an.x + (dx / len) * (an.r + 2), y: an.y + (dy / len) * (an.r + 2) };
         const path = stub === start ? [start, end] : [start, stub, end];
+        // A leader heads away from its label, never back past it.
+        if (c.side === "left" && end.x < stub.x + 4) continue;
+        if (c.side === "right" && end.x > stub.x - 4) continue;
         if (leaderHitsMolecule(path, an.atom, g)) continue;
         if (placed.some((p) => path.some((pt, k) => k > 0 && segHitsRect(path[k - 1], pt, p.rect)))) continue;
-        let crossings = 0;
-        for (const p of placed) for (let a = 1; a < p.path.length; a++) for (let b = 1; b < path.length; b++)
-          if (segmentsCross(path[b - 1], path[b], p.path[a - 1], p.path[a])) crossings++;
+        // Crossing or touching leaders are never drawn: the label is moved, or left out.
+        if (placed.some((p) => leadersClash(path, p.path))) continue;
         let length = 0;
         for (let k = 1; k < path.length; k++) length += Math.hypot(path[k].x - path[k - 1].x, path[k].y - path[k - 1].y);
         const slope = c.side === "left" || c.side === "right" ? Math.abs(stub.y - end.y) * 0.6 : Math.abs(start.x - end.x) * 0.6;
-        // Crossing leaders are a last resort: a textbook figure never crosses them if it can avoid it.
-        const cost = length + slope + c.pen + crossings * 5000;
+        // Two leaders ending side by side read as labels for the same atom.
+        const crowded = placed.some((p) => { const e = p.path[p.path.length - 1]; return Math.hypot(e.x - end.x, e.y - end.y) < 24; });
+        const cost = length + slope + c.pen + (crowded ? 150 : 0);
         if (!best || cost < best.cost) best = { ok: true, left: c.left, top: c.top, side: c.side, path, end, anchor: an.atom, cost, rect };
       }
     }
     if (best) {
       placed.push({ rect: best.rect, path: best.path });
       out[i] = { ok: true, left: best.left, top: best.top, side: best.side, path: best.path, end: best.end, anchor: best.anchor };
+      n++; total += best.cost;
     } else {
       out[i] = { ok: false, left: 0, top: 0, side: "left", path: [], end: { x: 0, y: 0 }, anchor: -1 };
     }
   });
-  return out;
+  return { out, n, cost: total };
 }

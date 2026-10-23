@@ -5,7 +5,7 @@ import fs from "node:fs";
 import {
   apply, faceGroup, matToQuat, principalAxes, quatToMat, ringReport, slerp, superimpose, type Mat3, type Vec3,
 } from "../../src/viewer/math.ts";
-import { leaderHitsMolecule, placeLabels, segmentsCross, type Geometry } from "../../src/viewer/labels.ts";
+import { leaderHitsMolecule, leadersClash, placeLabels, segmentsCross, type Geometry } from "../../src/viewer/labels.ts";
 import { coreRmsd } from "../../src/viewer/compare.ts";
 import type { Drug, Pair } from "../../src/data/types.ts";
 
@@ -98,7 +98,7 @@ describe("rotation maths", () => {
 describe("label placement", () => {
   const W = 880, H = 560;
   // Project a drug the way the app does after turning a group to the reader.
-  function geometryFor(slug: string, groupId?: string): { g: Geometry; d: Drug } {
+  function geometryFor(slug: string, groupId?: string, W = 880, H = 560): { g: Geometry; d: Drug } {
     const d = drug(slug);
     const { atoms, bonds, hidden } = parseSdf(d.sdf);
     const pts = atoms.map((a) => a.p);
@@ -128,6 +128,10 @@ describe("label placement", () => {
       placed += ok.length;
       for (const r of ok) {
         expect(leaderHitsMolecule(r.path, r.anchor, g), `${slug} leader`).toBe(false);
+        // Leaders head away from their label.
+        const [s0, e] = [r.path[r.path.length - 2], r.end];
+        if (r.side === "left") expect(e.x, `${slug} leader heads back`).toBeGreaterThan(s0.x);
+        if (r.side === "right") expect(e.x, `${slug} leader heads back`).toBeLessThan(s0.x);
         expect(r.left).toBeGreaterThanOrEqual(0);
         expect(r.top).toBeGreaterThanOrEqual(0);
       }
@@ -142,17 +146,25 @@ describe("label placement", () => {
     expect(placed / total).toBeGreaterThan(0.95);
   });
 
-  it("leader lines never cross each other, across the whole starter set", () => {
-    for (const slug of slugs) {
-      const { g, d } = geometryFor(slug);
-      const specs = d.groups.map((x, k) => ({ atoms: x.atoms, w: 8 + 7 * x.name.length * 0.62, h: k === 0 ? 72 : 18, prefer: "columns" as const }));
-      const ok = placeLabels(g, specs, { W, H, bottomReserve: 52 }).filter((r) => r.ok);
-      ok.forEach((a, i) => ok.slice(i + 1).forEach((b) => {
-        for (let p = 1; p < a.path.length; p++) for (let q = 1; q < b.path.length; q++)
-          expect(segmentsCross(a.path[p - 1], a.path[p], b.path[q - 1], b.path[q]), `${slug}: leaders cross`).toBe(false);
-      }));
-    }
-  });
+  // Wide figures put labels in columns; phone figures put them in rows.
+  for (const [layout, fw, fh, prefer] of [["columns", 880, 560, "columns"], ["rows, phone", 340, 520, "rows"]] as const) {
+    it(`leader lines never cross or touch each other (${layout}), across the whole starter set`, () => {
+      const clashes: string[] = [];
+      let total = 0, placed = 0;
+      for (const slug of slugs) {
+        const { g, d } = geometryFor(slug, undefined, fw, fh);
+        const specs = d.groups.map((x, k) => ({ atoms: x.atoms, w: 8 + 7 * x.name.length * 0.62, h: k === 0 && prefer === "columns" ? 72 : 18, prefer }));
+        const res = placeLabels(g, specs, { W: fw, H: fh, bottomReserve: 52 });
+        const ok = res.filter((r) => r.ok);
+        total += res.length; placed += ok.length;
+        ok.forEach((a, i) => ok.slice(i + 1).forEach((b) => { if (leadersClash(a.path, b.path)) clashes.push(slug); }));
+      }
+      expect(clashes).toEqual([]);
+      // The group list always names every group; the figure leaves out a label
+      // it cannot place cleanly. Narrow phone figures have less room (99 of 121).
+      expect(placed / total).toBeGreaterThan(prefer === "rows" ? 0.8 : 0.95);
+    });
+  }
 
   it("detects a leader that would cross a bond", () => {
     const g: Geometry = {
