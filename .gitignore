@@ -12,3 +12,6 @@ dev-dist/
 review/*.html
 .vercel
 .env*
+
+# Private interview notes
+INTERVIEW_NOTES.md
